@@ -1,0 +1,44 @@
+name: Bug report
+description: Bir hata bildir
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Teşekkürler. Lütfen **kişisel deste içeriğini** (kelimeler, resimler) paylaşma.
+  - type: input
+    id: version
+    attributes:
+      label: Sürüm
+      description: Ayarlar → Hakkında ekranındaki sürüm, ya da APK dosya adı.
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Cihaz / Android sürümü
+      placeholder: "Pixel 6, Android 14"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Yeniden üretme adımları
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Beklenen davranış
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log / ekran görüntüsü
+      description: Mümkünse `adb logcat` çıktısı veya ekran görüntüsü ekle.
+    validations:
+      required: false

@@ -1,0 +1,24 @@
+Yina, Anki destelerini telefonunda çalışmanın en sakin yoludur.
+
+Anki'den dışa aktardığın .apkg veya .colpkg dosyasını içe aktar; kartların, notların ve tekrar geçmişin olduğu gibi gelsin. Motor Anki'nin kendi zamanlayıcısını kullanır, yani masaüstünde gördüğün aralıklar telefonda da aynıdır.
+
+NEDEN YINA?
+
+• Sakin arayüz: tek ekran, tek birincil eylem. Dikkat dağıtan grafik yok.
+• Fiziksel his: dokunduğun nesne küçülür, kaydırdığın kart yayla yerine oturur.
+• Gerçek aralıklı tekrar: FSRS ile unutmadan hemen önce tekrar.
+• Yerel öncelikli: desteler cihazında kalır, hesap açman gerekmez.
+• Açık kaynak: AGPL-3.0, kaynak kod GitHub'da.
+
+ÖNE ÇIKANLAR
+
+• .apkg / .colpkg içe aktarma
+• Metin, görsel, ses, LaTeX ve cloze kartları
+• Deste bazında günlük tekrar ve yeni kart limitleri
+• Kart tarayıcı ve güçlü arama
+• Açık/koyu tema, tek elle kullanım
+• Türkçe ve İngilizce arayüz
+
+Yina, Anki veya AnkiDroid ile bağlantılı değildir. "Anki" adı yalnızca dosya formatı uyumluluğunu tanımlamak için kullanılır.
+
+Verilerin cihazında kalır. Ayrıntılar: gizlilik politikası.

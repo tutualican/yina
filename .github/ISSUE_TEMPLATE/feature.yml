@@ -1,0 +1,31 @@
+name: Feature request
+description: Bir özellik öner
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Hangi sorunu çözüyor?
+      description: Özellikten önce, yaşadığın somut sorunu anlat.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Önerin
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Alan
+      options:
+        - İçe aktarma / uyumluluk
+        - Çalışma ekranı
+        - Kart düzenleme
+        - Eşitleme
+        - İstatistik / planlama
+        - Erişilebilirlik
+        - Diğer
+    validations:
+      required: true

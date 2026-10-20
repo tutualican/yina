@@ -1,0 +1,1 @@
+İlk sürüm: sakin ana ekran, odak kartı, Anki paketi içe aktarma iskeleti.

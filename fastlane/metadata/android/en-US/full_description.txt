@@ -1,0 +1,24 @@
+Yina is the calm way to study your Anki decks on your phone.
+
+Import an .apkg or .colpkg exported from Anki and your cards, notes and review history come with it. The engine uses Anki's own scheduler, so intervals match what you see on desktop.
+
+WHY YINA
+
+• Calm interface: one screen, one primary action, no distracting decoration.
+• Physical feel: pressed objects shrink, swiped cards spring back into place.
+• Real spaced repetition with FSRS: review right before you forget.
+• Local-first: decks stay on your device, no account required.
+• Open source: AGPL-3.0, source on GitHub.
+
+HIGHLIGHTS
+
+• .apkg / .colpkg import
+• Text, images, audio, LaTeX and cloze cards
+• Per-deck daily review and new-card limits
+• Card browser with powerful search
+• Light and dark themes, one-handed use
+• Turkish and English interface
+
+Yina is not affiliated with Anki or AnkiDroid. "Anki" is used only to describe file-format compatibility.
+
+Your data stays on your device. See the privacy policy for details.

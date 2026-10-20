@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="home_title">Decks</string>
+    <string name="home_subtitle">Your Anki files, on your phone.</string>
+    <string name="today_label">Today</string>
+    <string name="due_now">cards due</string>
+    <string name="due_none">All done for today.</string>
+    <string name="due_none_hint">Import a deck to add new cards.</string>
+    <string name="start_focus">Start studying</string>
+    <string name="decks_section">Decks</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d card</item>
+        <item quantity="other">%1$d cards</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d due</item>
+        <item quantity="other">%1$d due</item>
+    </plurals>
+    <string name="swipe_to_study">Study</string>
+    <string name="study_not_ready">The study screen lands in Phase 1.</string>
+    <string name="import_action">Import</string>
+    <string name="import_content_description">Import deck</string>
+    <string name="import_hint">Choose an .apkg or .colpkg</string>
+    <plurals name="due_cards">
+        <item quantity="one">%1$d card due</item>
+        <item quantity="other">%1$d cards due</item>
+    </plurals>
+    <string name="no_due">Nothing due today. You can add new cards.</string>
+    <string name="empty_state_title">No decks yet</string>
+    <string name="empty_state_body">Start by importing an .apkg file exported from Anki.</string>
+    <string name="phase_banner_title">Phase 0 — skeleton</string>
+    <string name="phase_banner_body">UI and architecture are ready. The Anki engine (Rust core) arrives in Phase 1.</string>
+    <string name="import_not_ready">Import engine is not wired up yet. The Anki core lands in Phase 1.</string>
+    <string name="import_started">Package selected: %1$s</string>
+    <string name="sample_deck_note">Sample deck — your data appears once the engine is connected.</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_body">A local-first spaced repetition app for Anki files. Your data stays on your device.</string>
+    <string name="about_license">Open source under AGPL-3.0. Source code on GitHub.</string>
+    <string name="about_source">Source code</string>
+    <string name="close">Close</string>
+    <string name="deck_options">Deck options</string>
+</resources>

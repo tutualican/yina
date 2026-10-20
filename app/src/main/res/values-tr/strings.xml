@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="home_title">Destelerim</string>
+    <string name="home_subtitle">Anki dosyalarınla, telefonda.</string>
+    <string name="today_label">Bugün</string>
+    <string name="due_now">tekrar bekliyor</string>
+    <string name="due_none">Bugünlük her şey tamam.</string>
+    <string name="due_none_hint">Yeni kart eklemek için bir deste içe aktar.</string>
+    <string name="start_focus">Çalışmaya başla</string>
+    <string name="decks_section">Desteler</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d kart</item>
+        <item quantity="other">%1$d kart</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d tekrar</item>
+        <item quantity="other">%1$d tekrar</item>
+    </plurals>
+    <string name="swipe_to_study">Çalış</string>
+    <string name="study_not_ready">Çalışma ekranı Faz 1\'de gelecek.</string>
+    <string name="import_action">İçe aktar</string>
+    <string name="import_content_description">Deste içe aktar</string>
+    <string name="import_hint">.apkg veya .colpkg seç</string>
+    <plurals name="due_cards">
+        <item quantity="one">%1$d kart tekrar bekliyor</item>
+        <item quantity="other">%1$d kart tekrar bekliyor</item>
+    </plurals>
+    <string name="no_due">Bugünlük tekrar yok. Yeni kart ekleyebilirsin.</string>
+    <string name="empty_state_title">Henüz deste yok</string>
+    <string name="empty_state_body">Anki\'den dışa aktardığın .apkg dosyasını içe aktararak başla.</string>
+    <string name="phase_banner_title">Faz 0 — iskelet</string>
+    <string name="phase_banner_body">Arayüz ve mimari hazır. Anki motoru (Rust çekirdek) Faz 1\'de bağlanacak.</string>
+    <string name="import_not_ready">İçe aktarma motoru henüz bağlı değil. Faz 1\'de Anki çekirdeği eklenecek.</string>
+    <string name="import_started">Paket seçildi: %1$s</string>
+    <string name="sample_deck_note">Örnek deste — motor bağlanınca gerçek verin görünecek.</string>
+    <string name="settings">Ayarlar</string>
+    <string name="about">Hakkında</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Sürüm %1$s</string>
+    <string name="about_body">Anki dosyalarıyla çalışan, yerel öncelikli bir tekrar uygulaması. Verilerin cihazında kalır.</string>
+    <string name="about_license">AGPL-3.0 lisansıyla açık kaynak. Kaynak kodu GitHub\'da.</string>
+    <string name="about_source">Kaynak kod</string>
+    <string name="close">Kapat</string>
+    <string name="deck_options">Deste seçenekleri</string>
+</resources>
