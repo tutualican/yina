@@ -9,6 +9,12 @@ them.
 Yina is not affiliated with Anki, AnkiDroid or AnkiWeb. The name "Anki" is used
 only to describe file-format compatibility.
 
+## Download
+
+Signed APKs are attached to the [latest release](https://github.com/tutualican/yina/releases/latest).
+Most phones need the `arm64-v8a` build; `armeabi-v7a` is for older 32-bit
+devices, and `x86_64` is for emulators. Android 8.0 or newer is required.
+
 ## What works
 
 - **Import `.apkg` and `.colpkg`** through Android's file picker. Media files
