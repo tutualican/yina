@@ -1,94 +1,143 @@
 # Yina
 
-Anki dosyalarıyla çalışan, Android için kart tabanlı tekrar uygulaması.
-AnkiDroid'in motorunu ve uyumluluğunu koruyup **içerik üretme, eşitleme ve çalışma deneyimini** yeniden tasarlamayı hedefliyor.
+Anki dosyalarıyla çalışan bir Android bilgi kartı uygulaması. Hedef, Anki'nin
+dosya biçimini ve zamanlayıcısını korurken telefonda daha sade bir çalışma
+deneyimi sunmak.
 
-Tasarım tezi tek cümle: **sakin bir yüzey, tek bir görev, fiziksel bir nesne hissi.**
-Ayrıntı: [`docs/DESIGN.md`](docs/DESIGN.md).
+> Yina; Anki, AnkiDroid veya AnkiWeb ile bağlantılı değildir. "Anki" adı yalnızca
+> dosya biçimi uyumluluğunu anlatmak için kullanılıyor.
 
-<p align="center">
-  <img src="store/play-icon-512.png" width="128" alt="Yina simgesi" />
-</p>
+## Durum
 
-> Bu proje Anki, AnkiDroid veya AnkiWeb ile bağlantılı değildir. "Anki" adı yalnızca dosya formatı uyumluluğunu tanımlamak için kullanılır.
+Proje **Faz 0**'da: uygulama iskeleti, tasarım sistemi, simge, CI ve mağaza
+hattı hazır. Anki motoru (Rust çekirdeği) henüz bağlı değil.
 
-**Durum: Faz 0 — iskelet.** Arayüz, mimari sınırlar, CI/CD ve Play Store hattı hazır; Anki motoru (Rust çekirdek) henüz bağlı değil.
+Bu nedenle şu an:
+
+- uygulama açılır ve ana ekranı gösterir,
+- `.apkg` / `.colpkg` seçilebilir, ancak dosya henüz okunmaz,
+- gerçek deste, kart veya tekrar verisi görünmez.
+
+Faz 1'in konusu tam olarak bu: Anki'nin `rslib` çekirdeğini Android'e derleyip
+UniFFI üzerinden Kotlin'e bağlamak.
+
+## Teknik özet
 
 | | |
 |---|---|
 | Platform | Android 8.0+ (API 26), `targetSdk 36` |
-| Dil / UI | Kotlin, Jetpack Compose, Material 3 |
-| Lisans | AGPL-3.0-or-later |
-| Paket adı | `io.github.yina` (yayından önce değiştirilebilir, sonra **değiştirilemez**) |
+| Dil / arayüz | Kotlin, Jetpack Compose, Material 3 |
+| Paket adı | `io.github.yina` |
 | Sürüm | 0.1.0 |
+| Lisans | AGPL-3.0-or-later |
 
-## Neden Yina?
+Uygulama yerel öncelikli çalışır: hesap, sunucu, analitik veya reklam yok.
+Mevcut sürümde `INTERNET` izni bile istemez.
 
-AnkiDroid olgun ve doğru çalışıyor; eksik olduğu yer **ürün**:
+## Nasıl çalışıyor?
 
-- **Mobilde kart yazmak** (HTML, şablon, alan) hâlâ işkence → zengin metin editörü, tek dokunuşla fotoğraf/ses.
-- **Eşitleme** kafa karıştırıcı ve tek yönlü sync veri silebiliyor → anlaşılır durum, kart bazında çakışma çözümü, sürüm geçmişi.
-- **İstatistik var, karar yok** → günlük çalışma planı, birikmiş yük, sınav tarihine göre tempo.
-- **Eklenti yok** → güvenli "tarif" tabanlı otomasyonlar ve isteğe bağlı AI taslak üretimi.
+Arayüz ile motor birbirinden ayrı tutuluyor:
 
-Motoru yeniden yazmıyoruz: Anki'nin Rust çekirdeğini gömüyoruz. Ayrıntı: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+```text
+Compose ekranları
+      │
+      ▼
+HomeViewModel
+      │
+      ▼
+CollectionEngine        ← arayüzün bildiği tek motor sınırı
+      │
+      ├── StubCollectionEngine   (Faz 0, bugün)
+      └── AnkiCollectionEngine   (Faz 1, rslib + UniFFI)
+```
 
-## Hızlı başlangıç
+`CollectionEngine`, arayüzün ihtiyaç duyduğu işlemleri (deste listesi, tekrar
+oturumu, kart cevaplama, içe aktarma) tanımlar. Faz 0'da bunun boş bir
+uygulaması kullanılıyor; Faz 1'de aynı sınırın arkasına Anki çekirdeği
+yerleştirilecek. Böylece ekranların motor değiştiğinde yeniden yazılması
+gerekmiyor.
 
-Gereksinimler: JDK 17+ (CI'da 21), Android SDK 36.
+Ayrıntılar: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+## Tasarım
+
+Amaç süslü değil, sakin bir uygulama: her ekranda tek bir birincil eylem,
+karmaşıklığı arka planda tutan varsayılanlar ve dokunuşa fiziksel tepki veren
+yüzeyler. Renkler uygulama simgesinden türetildi; hareket yay (spring)
+eğrileriyle tanımlandı.
+
+Tasarım ilkeleri, renk/tipografi ölçeği ve hareket kuralları:
+[`docs/DESIGN.md`](docs/DESIGN.md).
+
+## Derleme
+
+Gereksinimler: JDK 17 veya üzeri (CI'da 21) ve Android SDK 36.
 
 ```bash
 git clone https://github.com/tutualican/yina.git
 cd yina
 
-# Debug APK
+# Hata ayıklama APK'sı
 ./gradlew :app:assembleDebug
-# app/build/outputs/apk/debug/app-debug.apk
+# çıktı: app/build/outputs/apk/debug/app-debug.apk
 
-# Test + lint
+# Birim testleri ve lint
 ./gradlew :app:testDebugUnitTest :app:lintDebug
 ```
 
-Android Studio ile: projeyi aç, `app` yapılandırmasını çalıştır.
+Windows'ta `./gradlew` yerine `gradlew.bat` kullanın. Android Studio ile
+açmak için projeyi içe aktarıp `app` yapılandırmasını çalıştırmak yeterli.
 
-## GitHub'da yayınlama
+## Proje yapısı
 
-1. Depoyu oluştur ve push et.
-2. **Actions → CI** her push'ta APK üretir; `yina-debug-<sha>` artifact'ından indirilebilir.
-3. Sürüm çıkarmak için etiket at:
+```text
+app/src/main/java/io/github/yina/
+  MainActivity.kt
+  core/
+    engine/        CollectionEngine ve Faz 0 uygulaması
+    model/         Deck gibi alan modelleri
+  di/              Elle kurulan bağımlılıklar
+  ui/
+    components/    Yeniden kullanılan küçük bileşenler
+    home/          Ana ekran ve ViewModel
+    theme/         Renk, tipografi, şekil, hareket
+app/src/main/res/  Simgeler, dizeler (tr/en), tema
+docs/              Mimari, tasarım, Play Store, gizlilik
+fastlane/          Mağaza metinleri
+```
+
+## Sürüm ve yayın
+
+Her push'ta CI, hata ayıklama APK'sı üretir. Etiket atıldığında `Release`
+iş akışı imzalı APK ve AAB oluşturup GitHub Release'e ekler:
 
 ```bash
 git tag v0.1.0
 git push origin v0.1.0
 ```
 
-`Release` iş akışı imzalı APK + AAB üretir ve GitHub Release'e ekler. İmzalama sırları için: [`docs/PLAY_STORE.md`](docs/PLAY_STORE.md#imzalama).
-
-## Play Store
-
-Mağazaya çıkış için adım adım kontrol listesi: [`docs/PLAY_STORE.md`](docs/PLAY_STORE.md).
-
-- Mağaza metinleri: [`fastlane/metadata/android/`](fastlane/metadata/android)
-- Gizlilik politikası taslağı: [`docs/PRIVACY.md`](docs/PRIVACY.md)
-- Data safety cevapları: [`docs/DATA_SAFETY.md`](docs/DATA_SAFETY.md)
-- Play'e otomatik yükleme: `.github/workflows/play.yml` (servis hesabı gerekir)
+İmzalama anahtarları ve Play Console adımları:
+[`docs/PLAY_STORE.md`](docs/PLAY_STORE.md).
 
 ## Yol haritası
 
-[`docs/ROADMAP.md`](docs/ROADMAP.md)
-
 - **Faz 0** — iskelet, tasarım sistemi, simge, CI, imzalama, mağaza hattı ✅
-- **Faz 1** — Rust çekirdek, `.apkg` içe aktarma, tekrar ekranı, FSRS
-- **Faz 2** — kart editörü, tarayıcı, yedek/geri yükleme
-- **Faz 3** — kendi sync sunucusu, çakışma çözümü, sürüm geçmişi
-- **Faz 4** — çalışma koçu, AI taslak üretimi
+- **Faz 1** — Anki Rust çekirdeği, `.apkg` içe aktarma, tekrar ekranı, FSRS
+- **Faz 2** — kart editörü, kart tarayıcı, yedekleme/geri yükleme
+- **Faz 3** — kendi eşitleme sunucusu, çakışma çözümü, sürüm geçmişi
+- **Faz 4** — çalışma planı, isteğe bağlı yapay zekâ taslakları
+
+Ayrıntılı liste: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## Katkı
 
-[`CONTRIBUTING.md`](CONTRIBUTING.md). Çeviriler `values-*/strings.xml` üzerinden yapılır.
+Katkı kuralları: [`CONTRIBUTING.md`](CONTRIBUTING.md). Çeviriler
+`app/src/main/res/values-*/strings.xml` dosyalarından yapılır.
 
 ## Lisans
 
-AGPL-3.0-or-later. Ayrıntı: [`LICENSE`](LICENSE).
+AGPL-3.0-or-later. Tam metin: [`LICENSE`](LICENSE).
 
-Bu lisans tesadüf değil: Anki'nin çekirdeği (`rslib`) AGPL-3.0. Onu bağlayan uygulama da AGPL olmak zorunda. Play Store'da AGPL yayınlamak serbesttir; kısıt yalnızca iOS/App Store tarafında.
+Bu lisans bilinçli bir seçim: Anki'nin çekirdeği (`rslib`) AGPL-3.0 altında ve
+onu bağlayan uygulamanın da AGPL olması gerekiyor. Play Store'da AGPL yayınlamak
+mümkün; kısıt esas olarak iOS/App Store tarafında.
