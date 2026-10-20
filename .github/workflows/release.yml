@@ -80,7 +80,7 @@ jobs:
           cp app/build/outputs/apk/release/app-release.apk "dist/yina-${{ steps.version.outputs.name }}.apk"
 
       - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: Yina ${{ steps.version.outputs.name }}
           tag_name: ${{ github.ref_type == 'tag' && github.ref_name || format('v{0}', steps.version.outputs.name) }}
