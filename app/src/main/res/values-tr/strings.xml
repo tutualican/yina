@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">Bugün</string>
+    <string name="due_now">kart tekrar bekliyor</string>
+    <string name="due_none">Bugünlük her şey tamam.</string>
+    <string name="due_none_hint">Yeni kart eklemek için bir deste içe aktar.</string>
+    <string name="start_focus">Çalışmaya başla</string>
+    <string name="decks_section">Desteler</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d kart</item>
+        <item quantity="other">%1$d kart</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d tekrar</item>
+        <item quantity="other">%1$d tekrar</item>
+    </plurals>
+    <string name="swipe_to_study">Çalış</string>
+    <string name="import_action">İçe aktar</string>
+    <string name="import_content_description">Deste içe aktar</string>
+    <string name="empty_state_title">Henüz deste yok</string>
+    <string name="empty_state_body">Anki\'den dışa aktardığın .apkg veya .colpkg dosyasını içe aktararak başla.</string>
+    <string name="import_success">%2$d desteden %1$d kart içe aktarıldı.</string>
+    <string name="import_failed">İçe aktarma başarısız: %1$s</string>
+    <string name="import_failed_generic">paket okunamadı</string>
+    <string name="about">Hakkında</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Sürüm %1$s</string>
+    <string name="about_body">Anki dosyalarıyla çalışan, yerel öncelikli bir aralıklı tekrar uygulaması. Koleksiyonun cihazında kalır.</string>
+    <string name="about_license">AGPL-3.0 ile açık kaynak. Anki\'nin kendi zamanlama motorunu kullanır.</string>
+    <string name="close">Kapat</string>
+
+    <string name="study_back">Geri</string>
+    <string name="study_undo">Geri al</string>
+    <string name="study_show_answer">Cevabı göster</string>
+    <string name="study_again">Tekrar</string>
+    <string name="study_hard">Zor</string>
+    <string name="study_good">İyi</string>
+    <string name="study_easy">Kolay</string>
+    <string name="study_error">Koleksiyon okunurken bir sorun oluştu.</string>
+    <string name="study_error_title">Kart açılamadı</string>
+    <string name="study_retry">Tekrar dene</string>
+    <string name="study_back_home">Destelere dön</string>
+    <string name="study_undo_failed">Geri alınacak bir şey yok.</string>
+    <string name="study_done_title">Bugünlük bitti</string>
+    <plurals name="study_remaining">
+        <item quantity="one">%1$d kart kaldı</item>
+        <item quantity="other">%1$d kart kaldı</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="one">%1$d kart çalıştın.</item>
+        <item quantity="other">%1$d kart çalıştın.</item>
+    </plurals>
+</resources>

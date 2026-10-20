@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">Hoy</string>
+    <string name="due_now">tarjetas pendientes</string>
+    <string name="due_none">Todo hecho por hoy.</string>
+    <string name="due_none_hint">Importa un mazo para añadir tarjetas nuevas.</string>
+    <string name="start_focus">Empezar a estudiar</string>
+    <string name="decks_section">Mazos</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d tarjeta</item>
+        <item quantity="other">%1$d tarjetas</item>
+        <item quantity="many">%1$d tarjetas</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d pendiente</item>
+        <item quantity="other">%1$d pendientes</item>
+        <item quantity="many">%1$d pendientes</item>
+    </plurals>
+    <string name="swipe_to_study">Estudiar</string>
+    <string name="import_action">Importar</string>
+    <string name="import_content_description">Importar mazo</string>
+    <string name="empty_state_title">Aún no hay mazos</string>
+    <string name="empty_state_body">Empieza importando un archivo .apkg o .colpkg exportado de Anki.</string>
+    <string name="import_success">Se importaron %1$d tarjetas de %2$d mazos.</string>
+    <string name="import_failed">Error al importar: %1$s</string>
+    <string name="import_failed_generic">no se pudo leer el paquete</string>
+    <string name="about">Acerca de</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Versión %1$s</string>
+    <string name="about_body">Una app de repaso espaciado local para archivos de Anki. Tu colección permanece en tu dispositivo.</string>
+    <string name="about_license">Código abierto bajo AGPL-3.0. Usa el motor de programación de Anki.</string>
+    <string name="close">Cerrar</string>
+    <string name="study_back">Atrás</string>
+    <string name="study_undo">Deshacer</string>
+    <string name="study_show_answer">Mostrar respuesta</string>
+    <string name="study_again">Otra vez</string>
+    <string name="study_hard">Difícil</string>
+    <string name="study_good">Bien</string>
+    <string name="study_easy">Fácil</string>
+    <string name="study_error">Ocurrió un error al leer la colección.</string>
+    <string name="study_error_title">No se pudo abrir la tarjeta</string>
+    <string name="study_retry">Reintentar</string>
+    <string name="study_back_home">Volver a los mazos</string>
+    <string name="study_undo_failed">No hay nada que deshacer.</string>
+    <string name="study_done_title">Todo listo por hoy</string>
+    <plurals name="study_remaining">
+        <item quantity="one">%1$d tarjeta restante</item>
+        <item quantity="other">%1$d tarjetas restantes</item>
+        <item quantity="many">%1$d tarjetas restantes</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="one">Estudiaste %1$d tarjeta.</item>
+        <item quantity="other">Estudiaste %1$d tarjetas.</item>
+        <item quantity="many">Estudiaste %1$d tarjetas.</item>
+    </plurals>
+</resources>

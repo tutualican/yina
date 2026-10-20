@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">Hoje</string>
+    <string name="due_now">cartões para revisar</string>
+    <string name="due_none">Tudo feito por hoje.</string>
+    <string name="due_none_hint">Importe um baralho para adicionar novos cartões.</string>
+    <string name="start_focus">Começar a estudar</string>
+    <string name="decks_section">Baralhos</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d cartão</item>
+        <item quantity="other">%1$d cartões</item>
+        <item quantity="many">%1$d cartões</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d para revisar</item>
+        <item quantity="other">%1$d para revisar</item>
+        <item quantity="many">%1$d para revisar</item>
+    </plurals>
+    <string name="swipe_to_study">Estudar</string>
+    <string name="import_action">Importar</string>
+    <string name="import_content_description">Importar baralho</string>
+    <string name="empty_state_title">Nenhum baralho ainda</string>
+    <string name="empty_state_body">Comece importando um arquivo .apkg ou .colpkg exportado do Anki.</string>
+    <string name="import_success">%1$d cartões importados de %2$d baralhos.</string>
+    <string name="import_failed">Falha na importação: %1$s</string>
+    <string name="import_failed_generic">não foi possível ler o pacote</string>
+    <string name="about">Sobre</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Versão %1$s</string>
+    <string name="about_body">Um app de repetição espaçada local para arquivos do Anki. Sua coleção fica no seu dispositivo.</string>
+    <string name="about_license">Código aberto sob AGPL-3.0. Usa o motor de agendamento do Anki.</string>
+    <string name="close">Fechar</string>
+    <string name="study_back">Voltar</string>
+    <string name="study_undo">Desfazer</string>
+    <string name="study_show_answer">Mostrar resposta</string>
+    <string name="study_again">De novo</string>
+    <string name="study_hard">Difícil</string>
+    <string name="study_good">Bom</string>
+    <string name="study_easy">Fácil</string>
+    <string name="study_error">Ocorreu um erro ao ler a coleção.</string>
+    <string name="study_error_title">Não foi possível abrir o cartão</string>
+    <string name="study_retry">Tentar novamente</string>
+    <string name="study_back_home">Voltar aos baralhos</string>
+    <string name="study_undo_failed">Não há nada para desfazer.</string>
+    <string name="study_done_title">Tudo pronto por hoje</string>
+    <plurals name="study_remaining">
+        <item quantity="one">%1$d cartão restante</item>
+        <item quantity="other">%1$d cartões restantes</item>
+        <item quantity="many">%1$d cartões restantes</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="one">Você estudou %1$d cartão.</item>
+        <item quantity="other">Você estudou %1$d cartões.</item>
+        <item quantity="many">Você estudou %1$d cartões.</item>
+    </plurals>
+</resources>

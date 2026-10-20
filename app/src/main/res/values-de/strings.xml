@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">Heute</string>
+    <string name="due_now">Karten fällig</string>
+    <string name="due_none">Für heute alles erledigt.</string>
+    <string name="due_none_hint">Importiere ein Deck, um neue Karten hinzuzufügen.</string>
+    <string name="start_focus">Lernen beginnen</string>
+    <string name="decks_section">Decks</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d Karte</item>
+        <item quantity="other">%1$d Karten</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d fällig</item>
+        <item quantity="other">%1$d fällig</item>
+    </plurals>
+    <string name="swipe_to_study">Lernen</string>
+    <string name="import_action">Importieren</string>
+    <string name="import_content_description">Deck importieren</string>
+    <string name="empty_state_title">Noch keine Decks</string>
+    <string name="empty_state_body">Beginne mit dem Import einer aus Anki exportierten .apkg- oder .colpkg-Datei.</string>
+    <string name="import_success">%1$d Karten aus %2$d Decks importiert.</string>
+    <string name="import_failed">Import fehlgeschlagen: %1$s</string>
+    <string name="import_failed_generic">das Paket konnte nicht gelesen werden</string>
+    <string name="about">Info</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_body">Eine lokal arbeitende App für verteiltes Wiederholen mit Anki-Dateien. Deine Sammlung bleibt auf deinem Gerät.</string>
+    <string name="about_license">Open Source unter AGPL-3.0. Nutzt Ankis eigene Zeitplanungs-Engine.</string>
+    <string name="close">Schließen</string>
+    <string name="study_back">Zurück</string>
+    <string name="study_undo">Rückgängig</string>
+    <string name="study_show_answer">Antwort zeigen</string>
+    <string name="study_again">Nochmal</string>
+    <string name="study_hard">Schwer</string>
+    <string name="study_good">Gut</string>
+    <string name="study_easy">Einfach</string>
+    <string name="study_error">Beim Lesen der Sammlung ist ein Fehler aufgetreten.</string>
+    <string name="study_error_title">Karte konnte nicht geöffnet werden</string>
+    <string name="study_retry">Erneut versuchen</string>
+    <string name="study_back_home">Zurück zu den Decks</string>
+    <string name="study_undo_failed">Nichts rückgängig zu machen.</string>
+    <string name="study_done_title">Für heute fertig</string>
+    <plurals name="study_remaining">
+        <item quantity="one">%1$d Karte übrig</item>
+        <item quantity="other">%1$d Karten übrig</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="one">Du hast %1$d Karte gelernt.</item>
+        <item quantity="other">Du hast %1$d Karten gelernt.</item>
+    </plurals>
+</resources>

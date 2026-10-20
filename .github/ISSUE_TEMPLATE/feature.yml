@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest an improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the concrete situation before describing the feature.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Import / compatibility
+        - Review screen
+        - Card editing
+        - Sync
+        - Statistics / planning
+        - Accessibility
+        - Other
+    validations:
+      required: true

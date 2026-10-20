@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">오늘</string>
+    <string name="due_now">장 복습 대기</string>
+    <string name="due_none">오늘 학습은 모두 끝났습니다.</string>
+    <string name="due_none_hint">새 카드를 추가하려면 덱을 가져오세요.</string>
+    <string name="start_focus">학습 시작</string>
+    <string name="decks_section">덱</string>
+    <plurals name="deck_card_count">
+        <item quantity="other">%1$d장</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="other">%1$d개</item>
+    </plurals>
+    <string name="swipe_to_study">학습</string>
+    <string name="import_action">가져오기</string>
+    <string name="import_content_description">덱 가져오기</string>
+    <string name="empty_state_title">아직 덱이 없습니다</string>
+    <string name="empty_state_body">Anki에서 내보낸 .apkg 또는 .colpkg 파일을 가져와 시작하세요.</string>
+    <string name="import_success">%2$d개 덱에서 %1$d장의 카드를 가져왔습니다.</string>
+    <string name="import_failed">가져오기 실패: %1$s</string>
+    <string name="import_failed_generic">패키지를 읽을 수 없습니다</string>
+    <string name="about">정보</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">버전 %1$s</string>
+    <string name="about_body">Anki 파일을 위한 로컬 우선 간격 반복 앱입니다. 컬렉션은 기기에 저장됩니다.</string>
+    <string name="about_license">AGPL-3.0 오픈 소스. Anki의 스케줄링 엔진을 사용합니다.</string>
+    <string name="close">닫기</string>
+    <string name="study_back">뒤로</string>
+    <string name="study_undo">실행 취소</string>
+    <string name="study_show_answer">답 보기</string>
+    <string name="study_again">다시</string>
+    <string name="study_hard">어려움</string>
+    <string name="study_good">좋음</string>
+    <string name="study_easy">쉬움</string>
+    <string name="study_error">컬렉션을 읽는 중 문제가 발생했습니다.</string>
+    <string name="study_error_title">카드를 열 수 없습니다</string>
+    <string name="study_retry">다시 시도</string>
+    <string name="study_back_home">덱으로 돌아가기</string>
+    <string name="study_undo_failed">되돌릴 작업이 없습니다.</string>
+    <string name="study_done_title">오늘 학습 완료</string>
+    <plurals name="study_remaining">
+        <item quantity="other">%1$d장 남음</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="other">%1$d장을 학습했습니다.</item>
+    </plurals>
+</resources>

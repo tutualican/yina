@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">今日</string>
+    <string name="due_now">枚のカードが復習待ち</string>
+    <string name="due_none">今日の分は完了しました。</string>
+    <string name="due_none_hint">新しいカードを追加するにはデッキをインポートしてください。</string>
+    <string name="start_focus">学習を始める</string>
+    <string name="decks_section">デッキ</string>
+    <plurals name="deck_card_count">
+        <item quantity="other">%1$d 枚</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="other">%1$d 件</item>
+    </plurals>
+    <string name="swipe_to_study">学習</string>
+    <string name="import_action">インポート</string>
+    <string name="import_content_description">デッキをインポート</string>
+    <string name="empty_state_title">デッキがありません</string>
+    <string name="empty_state_body">Anki から書き出した .apkg または .colpkg ファイルをインポートして始めましょう。</string>
+    <string name="import_success">%2$d 個のデッキから %1$d 枚のカードをインポートしました。</string>
+    <string name="import_failed">インポートに失敗しました: %1$s</string>
+    <string name="import_failed_generic">パッケージを読み込めませんでした</string>
+    <string name="about">このアプリについて</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">バージョン %1$s</string>
+    <string name="about_body">Anki ファイルに対応したローカル優先の間隔反復アプリです。コレクションは端末内に保存されます。</string>
+    <string name="about_license">AGPL-3.0 のオープンソース。Anki 本体のスケジューリングエンジンを使用しています。</string>
+    <string name="close">閉じる</string>
+    <string name="study_back">戻る</string>
+    <string name="study_undo">元に戻す</string>
+    <string name="study_show_answer">答えを表示</string>
+    <string name="study_again">もう一度</string>
+    <string name="study_hard">難しい</string>
+    <string name="study_good">良い</string>
+    <string name="study_easy">簡単</string>
+    <string name="study_error">コレクションの読み込み中に問題が発生しました。</string>
+    <string name="study_error_title">カードを開けませんでした</string>
+    <string name="study_retry">再試行</string>
+    <string name="study_back_home">デッキに戻る</string>
+    <string name="study_undo_failed">元に戻す操作はありません。</string>
+    <string name="study_done_title">今日の分は完了</string>
+    <plurals name="study_remaining">
+        <item quantity="other">残り %1$d 枚</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="other">%1$d 枚学習しました。</item>
+    </plurals>
+</resources>

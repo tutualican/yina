@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">Dziś</string>
+    <string name="due_now">kart do powtórki</string>
+    <string name="due_none">Na dziś wszystko zrobione.</string>
+    <string name="due_none_hint">Zaimportuj talię, aby dodać nowe karty.</string>
+    <string name="start_focus">Rozpocznij naukę</string>
+    <string name="decks_section">Talie</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d karta</item>
+        <item quantity="few">%1$d karty</item>
+        <item quantity="many">%1$d kart</item>
+        <item quantity="other">%1$d karty</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d do powtórki</item>
+        <item quantity="few">%1$d do powtórki</item>
+        <item quantity="many">%1$d do powtórki</item>
+        <item quantity="other">%1$d do powtórki</item>
+    </plurals>
+    <string name="swipe_to_study">Ucz się</string>
+    <string name="import_action">Importuj</string>
+    <string name="import_content_description">Importuj talię</string>
+    <string name="empty_state_title">Brak talii</string>
+    <string name="empty_state_body">Zacznij od zaimportowania pliku .apkg lub .colpkg wyeksportowanego z Anki.</string>
+    <string name="import_success">Zaimportowano %1$d kart z %2$d talii.</string>
+    <string name="import_failed">Import nie powiódł się: %1$s</string>
+    <string name="import_failed_generic">nie udało się odczytać pakietu</string>
+    <string name="about">Informacje</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Wersja %1$s</string>
+    <string name="about_body">Lokalna aplikacja do powtórek z plikami Anki. Twoja kolekcja pozostaje na urządzeniu.</string>
+    <string name="about_license">Otwarte źródło na licencji AGPL-3.0. Korzysta z silnika planowania Anki.</string>
+    <string name="close">Zamknij</string>
+    <string name="study_back">Wstecz</string>
+    <string name="study_undo">Cofnij</string>
+    <string name="study_show_answer">Pokaż odpowiedź</string>
+    <string name="study_again">Jeszcze raz</string>
+    <string name="study_hard">Trudne</string>
+    <string name="study_good">Dobre</string>
+    <string name="study_easy">Łatwe</string>
+    <string name="study_error">Wystąpił błąd podczas odczytu kolekcji.</string>
+    <string name="study_error_title">Nie udało się otworzyć karty</string>
+    <string name="study_retry">Spróbuj ponownie</string>
+    <string name="study_back_home">Wróć do talii</string>
+    <string name="study_undo_failed">Nie ma czego cofać.</string>
+    <string name="study_done_title">Na dziś koniec</string>
+    <plurals name="study_remaining">
+        <item quantity="one">Pozostała %1$d karta</item>
+        <item quantity="few">Pozostały %1$d karty</item>
+        <item quantity="many">Pozostało %1$d kart</item>
+        <item quantity="other">Pozostało %1$d karty</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="one">Przerobiono %1$d kartę.</item>
+        <item quantity="few">Przerobiono %1$d karty.</item>
+        <item quantity="many">Przerobiono %1$d kart.</item>
+        <item quantity="other">Przerobiono %1$d karty.</item>
+    </plurals>
+</resources>

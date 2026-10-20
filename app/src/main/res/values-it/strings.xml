@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">Oggi</string>
+    <string name="due_now">carte da ripassare</string>
+    <string name="due_none">Tutto fatto per oggi.</string>
+    <string name="due_none_hint">Importa un mazzo per aggiungere nuove carte.</string>
+    <string name="start_focus">Inizia a studiare</string>
+    <string name="decks_section">Mazzi</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d carta</item>
+        <item quantity="other">%1$d carte</item>
+        <item quantity="many">%1$d carte</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d da ripassare</item>
+        <item quantity="other">%1$d da ripassare</item>
+        <item quantity="many">%1$d da ripassare</item>
+    </plurals>
+    <string name="swipe_to_study">Studia</string>
+    <string name="import_action">Importa</string>
+    <string name="import_content_description">Importa mazzo</string>
+    <string name="empty_state_title">Nessun mazzo</string>
+    <string name="empty_state_body">Inizia importando un file .apkg o .colpkg esportato da Anki.</string>
+    <string name="import_success">Importate %1$d carte da %2$d mazzi.</string>
+    <string name="import_failed">Importazione non riuscita: %1$s</string>
+    <string name="import_failed_generic">impossibile leggere il pacchetto</string>
+    <string name="about">Info</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Versione %1$s</string>
+    <string name="about_body">Un\'app locale per il ripasso dilazionato dei file Anki. La tua collezione resta sul dispositivo.</string>
+    <string name="about_license">Open source con licenza AGPL-3.0. Usa il motore di pianificazione di Anki.</string>
+    <string name="close">Chiudi</string>
+    <string name="study_back">Indietro</string>
+    <string name="study_undo">Annulla</string>
+    <string name="study_show_answer">Mostra risposta</string>
+    <string name="study_again">Ancora</string>
+    <string name="study_hard">Difficile</string>
+    <string name="study_good">Bene</string>
+    <string name="study_easy">Facile</string>
+    <string name="study_error">Si è verificato un errore durante la lettura della collezione.</string>
+    <string name="study_error_title">Impossibile aprire la carta</string>
+    <string name="study_retry">Riprova</string>
+    <string name="study_back_home">Torna ai mazzi</string>
+    <string name="study_undo_failed">Niente da annullare.</string>
+    <string name="study_done_title">Fatto per oggi</string>
+    <plurals name="study_remaining">
+        <item quantity="one">%1$d carta rimasta</item>
+        <item quantity="other">%1$d carte rimaste</item>
+        <item quantity="many">%1$d carte rimaste</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="one">Hai studiato %1$d carta.</item>
+        <item quantity="other">Hai studiato %1$d carte.</item>
+        <item quantity="many">Hai studiato %1$d carte.</item>
+    </plurals>
+</resources>

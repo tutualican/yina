@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">Today</string>
+    <string name="due_now">cards due</string>
+    <string name="due_none">All done for today.</string>
+    <string name="due_none_hint">Import a deck to add new cards.</string>
+    <string name="start_focus">Start studying</string>
+    <string name="decks_section">Decks</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d card</item>
+        <item quantity="other">%1$d cards</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d due</item>
+        <item quantity="other">%1$d due</item>
+    </plurals>
+    <string name="swipe_to_study">Study</string>
+    <string name="import_action">Import</string>
+    <string name="import_content_description">Import deck</string>
+    <string name="empty_state_title">No decks yet</string>
+    <string name="empty_state_body">Start by importing an .apkg or .colpkg file exported from Anki.</string>
+    <string name="import_success">Imported %1$d cards from %2$d decks.</string>
+    <string name="import_failed">Import failed: %1$s</string>
+    <string name="import_failed_generic">the package could not be read</string>
+    <string name="about">About</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_body">A local-first spaced repetition app for Anki files. Your collection stays on your device.</string>
+    <string name="about_license">Open source under AGPL-3.0. Uses Anki\'s own scheduling engine.</string>
+    <string name="close">Close</string>
+
+    <string name="study_back">Back</string>
+    <string name="study_undo">Undo</string>
+    <string name="study_show_answer">Show answer</string>
+    <string name="study_again">Again</string>
+    <string name="study_hard">Hard</string>
+    <string name="study_good">Good</string>
+    <string name="study_easy">Easy</string>
+    <string name="study_error">Something went wrong while reading the collection.</string>
+    <string name="study_error_title">Couldn\'t open the card</string>
+    <string name="study_retry">Try again</string>
+    <string name="study_back_home">Back to decks</string>
+    <string name="study_undo_failed">Nothing to undo.</string>
+    <string name="study_done_title">All done for today</string>
+    <plurals name="study_remaining">
+        <item quantity="one">%1$d card left</item>
+        <item quantity="other">%1$d cards left</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="one">You studied %1$d card.</item>
+        <item quantity="other">You studied %1$d cards.</item>
+    </plurals>
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yina</string>
+    <string name="today_label">Сегодня</string>
+    <string name="due_now">карточек к повторению</string>
+    <string name="due_none">На сегодня всё.</string>
+    <string name="due_none_hint">Импортируйте колоду, чтобы добавить карточки.</string>
+    <string name="start_focus">Начать занятие</string>
+    <string name="decks_section">Колоды</string>
+    <plurals name="deck_card_count">
+        <item quantity="one">%1$d карточка</item>
+        <item quantity="few">%1$d карточки</item>
+        <item quantity="many">%1$d карточек</item>
+        <item quantity="other">%1$d карточки</item>
+    </plurals>
+    <plurals name="deck_due_count">
+        <item quantity="one">%1$d к повторению</item>
+        <item quantity="few">%1$d к повторению</item>
+        <item quantity="many">%1$d к повторению</item>
+        <item quantity="other">%1$d к повторению</item>
+    </plurals>
+    <string name="swipe_to_study">Учить</string>
+    <string name="import_action">Импорт</string>
+    <string name="import_content_description">Импортировать колоду</string>
+    <string name="empty_state_title">Колод пока нет</string>
+    <string name="empty_state_body">Начните с импорта файла .apkg или .colpkg, экспортированного из Anki.</string>
+    <string name="import_success">Импортировано карточек: %1$d из колод: %2$d.</string>
+    <string name="import_failed">Ошибка импорта: %1$s</string>
+    <string name="import_failed_generic">не удалось прочитать пакет</string>
+    <string name="about">О приложении</string>
+    <string name="about_title">Yina</string>
+    <string name="about_version">Версия %1$s</string>
+    <string name="about_body">Локальное приложение для интервального повторения файлов Anki. Коллекция остаётся на устройстве.</string>
+    <string name="about_license">Открытый исходный код, AGPL-3.0. Использует движок планирования Anki.</string>
+    <string name="close">Закрыть</string>
+    <string name="study_back">Назад</string>
+    <string name="study_undo">Отменить</string>
+    <string name="study_show_answer">Показать ответ</string>
+    <string name="study_again">Снова</string>
+    <string name="study_hard">Трудно</string>
+    <string name="study_good">Хорошо</string>
+    <string name="study_easy">Легко</string>
+    <string name="study_error">При чтении коллекции произошла ошибка.</string>
+    <string name="study_error_title">Не удалось открыть карточку</string>
+    <string name="study_retry">Повторить</string>
+    <string name="study_back_home">К колодам</string>
+    <string name="study_undo_failed">Нечего отменять.</string>
+    <string name="study_done_title">На сегодня всё</string>
+    <plurals name="study_remaining">
+        <item quantity="one">Осталась %1$d карточка</item>
+        <item quantity="few">Осталось %1$d карточки</item>
+        <item quantity="many">Осталось %1$d карточек</item>
+        <item quantity="other">Осталось %1$d карточки</item>
+    </plurals>
+    <plurals name="study_done_body">
+        <item quantity="one">Изучена %1$d карточка.</item>
+        <item quantity="few">Изучено %1$d карточки.</item>
+        <item quantity="many">Изучено %1$d карточек.</item>
+        <item quantity="other">Изучено %1$d карточки.</item>
+    </plurals>
+</resources>
