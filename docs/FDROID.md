@@ -8,7 +8,8 @@ submitted yet. The files in this directory are a draft for
 
 - Application ID: `io.github.tutualican.yina`.
 - Version: `0.4.0`, version code `400`.
-- Fastlane metadata: `fastlane/metadata/android/en-US/` and `tr-TR/`.
+- Fastlane metadata: `fastlane/metadata/android/en-US/` and `tr-TR/`,
+  including two phone screenshots in light and dark mode.
 - F-Droid build flag: `-PyinaUniversalApk` produces one universal APK instead of
   three ABI-specific APKs with the same version code.
 - Draft metadata: `fdroid/io.github.tutualican.yina.yml`.
@@ -43,10 +44,8 @@ uses `commit: v0.4.0` and `gradleprops: - yinaUniversalApk`.
 
 ## Remaining human steps
 
-- Add real phone screenshots under
-  `fastlane/metadata/android/en-US/images/phoneScreenshots/` and, optionally,
-  `tr-TR/`. F-Droid treats screenshots as optional, but the listing is much
-  better with them.
+- Review and publish the draft GitHub release for `v0.4.0`. The application ID
+  changed, so 0.3.0 users must uninstall before installing 0.4.0.
 - Decide whether to keep GitHub Releases and F-Droid releases side by side.
   F-Droid normally signs with its own key. A phone cannot update from the
   GitHub-signed APK to the F-Droid-signed APK in place; the user must uninstall
