@@ -1,0 +1,15 @@
+Yina is a calm, local-first flashcard app for Android that opens real Anki collections. It uses Anki's own Rust scheduling engine, so imported decks keep their templates, media and review history, and answers follow Anki's FSRS and learning steps.
+
+Features:
+* Import .apkg and .colpkg files through Android's file picker.
+* Browse the real Anki deck tree with review, learning and new counts.
+* Study with Anki's queue, reveal the answer, then rate Again, Hard, Good or Easy.
+* See the interval Anki computed for each answer.
+* Undo the last answer.
+* Create decks and basic cards, rename decks and delete decks or cards.
+* Choose system, light or dark appearance.
+* Use the app in English, Turkish, German, Spanish, French, Italian, Japanese, Korean, Polish, Portuguese, Russian or Simplified Chinese.
+
+Yina stores everything on the device. It has no account system, no analytics, no ads and does not request the INTERNET permission. Sync and AnkiWeb are not included.
+
+Yina is an independent project. It is not affiliated with Anki, AnkiDroid or AnkiWeb; the name Anki is used only to describe file-format compatibility.

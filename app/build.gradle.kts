@@ -15,18 +15,29 @@ val keystoreProperties = Properties().apply {
 }
 val hasReleaseKeystore = keystorePropertiesFile.exists()
 
+// F-Droid needs one APK per version code. Pass -PyinaUniversalApk to disable
+// the per-ABI splits and produce a single universal release APK instead.
+val buildUniversalApk = providers.gradleProperty("yinaUniversalApk").isPresent
+
 android {
-    namespace = "io.github.yina"
+    namespace = "io.github.tutualican.yina"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "io.github.yina"
+        applicationId = "io.github.tutualican.yina"
         minSdk = 26
         targetSdk = 36
-        versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 4
-        versionName = System.getenv("VERSION_NAME") ?: "0.3.0"
+        versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 400
+        versionName = System.getenv("VERSION_NAME") ?: "0.4.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
+        if (buildUniversalApk) {
+            ndk {
+                // Match the release split set; the backend also ships an x86
+                // build, which no supported phone needs.
+                abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
+            }
+        }
     }
 
     signingConfigs {
@@ -59,7 +70,7 @@ android {
 
     splits {
         abi {
-            isEnable = true
+            isEnable = !buildUniversalApk
             reset()
             include("arm64-v8a", "armeabi-v7a", "x86_64")
             isUniversalApk = false

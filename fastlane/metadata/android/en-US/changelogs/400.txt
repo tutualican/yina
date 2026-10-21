@@ -1,0 +1,4 @@
+Yina 0.4.0
+- New application ID for the F-Droid release.
+- Added a universal APK build for F-Droid.
+- Updated release metadata and translations.

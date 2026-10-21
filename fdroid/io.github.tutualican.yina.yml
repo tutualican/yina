@@ -1,0 +1,22 @@
+Categories:
+  - Science & Education
+License: AGPL-3.0-or-later
+AuthorName: Yina maintainers
+SourceCode: https://github.com/tutualican/yina
+IssueTracker: https://github.com/tutualican/yina/issues
+RepoType: git
+Repo: https://github.com/tutualican/yina.git
+
+Builds:
+  - versionName: 0.4.0
+    versionCode: 400
+    commit: v0.4.0
+    gradle:
+      - yes
+    gradleprops:
+      - yinaUniversalApk
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 0.4.0
+CurrentVersionCode: 400

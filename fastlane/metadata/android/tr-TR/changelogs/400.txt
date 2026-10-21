@@ -1,0 +1,4 @@
+Yina 0.4.0
+- F-Droid sürümü için yeni uygulama kimliği.
+- F-Droid için tek evrensel APK desteği.
+- Sürüm bilgileri ve çeviriler güncellendi.

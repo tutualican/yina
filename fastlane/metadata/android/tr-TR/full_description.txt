@@ -1,0 +1,15 @@
+Yina, gerçek Anki koleksiyonlarını açan, sakin ve yerel öncelikli bir Android bilgi kartı uygulamasıdır. Anki'nin kendi Rust zamanlama motorunu kullanır; içe aktarılan desteler şablonlarını, medyasını ve tekrar geçmişini korur, cevaplar Anki'nin FSRS ve öğrenme adımlarına göre planlanır.
+
+Özellikler:
+* Android dosya seçiciyle .apkg ve .colpkg dosyalarını içe aktarma.
+* Gerçek Anki deste ağacını tekrar, öğrenme ve yeni kart sayılarıyla görüntüleme.
+* Anki kuyruğuyla çalışma; cevabı gösterip Tekrar, Zor, İyi veya Kolay olarak değerlendirme.
+* Her cevap için Anki'nin hesapladığı aralığı görme.
+* Son cevabı geri alma.
+* Deste ve temel kart oluşturma, deste adını değiştirme, deste veya kart silme.
+* Sistem, açık veya koyu görünüm seçme.
+* Uygulamayı Türkçe, İngilizce, Almanca, İspanyolca, Fransızca, İtalyanca, Japonca, Korece, Lehçe, Portekizce, Rusça veya Basitleştirilmiş Çince kullanma.
+
+Yina her şeyi cihazda saklar. Hesap sistemi, analiz, reklam yoktur ve uygulama INTERNET izni istemez. Eşitleme ve AnkiWeb bu sürümde yoktur.
+
+Yina bağımsız bir projedir. Anki, AnkiDroid veya AnkiWeb ile bağlantılı değildir; Anki adı yalnızca dosya biçimi uyumluluğunu anlatmak için kullanılır.

@@ -15,6 +15,9 @@ Signed APKs are attached to the [latest release](../../releases/latest).
 Most phones need the `arm64-v8a` build; `armeabi-v7a` is for older 32-bit
 devices, and `x86_64` is for emulators. Android 8.0 or newer is required.
 
+The F-Droid submission is prepared but not published yet. See
+[`docs/FDROID.md`](docs/FDROID.md) for the build, metadata and signing notes.
+
 ## What works
 
 - **Import `.apkg` and `.colpkg`** through Android's file picker. Media files
@@ -126,14 +129,22 @@ It writes `release.jks` and `keystore.properties`; both are gitignored. Back the
 up: without the same key you cannot update an installed copy. Then:
 
 ```powershell
-$env:VERSION_NAME = "0.3.0"
-$env:VERSION_CODE = "4"
+$env:VERSION_NAME = "0.4.0"
+$env:VERSION_CODE = "400"
 .\gradlew :app:assembleRelease
 ```
 
 The build uses ABI splits and produces `app-arm64-v8a-release.apk`,
 `app-armeabi-v7a-release.apk` and `app-x86_64-release.apk`. Most phones need the
 first one. Upload the APK that matches the device to a GitHub Release.
+
+For F-Droid, build one universal APK instead. This avoids three release files
+sharing the same version code:
+
+```powershell
+.\gradlew :app:assembleRelease -PyinaUniversalApk
+# app/build/outputs/apk/release/app-release.apk
+```
 
 The `Release` workflow is manual on purpose: by default the signing key stays on
 the maintainer's machine. If you prefer CI releases, add the four signing secrets
@@ -143,7 +154,7 @@ workflow from the Actions tab with a version name.
 ## Project layout
 
 ```text
-app/src/main/java/io/github/yina/
+app/src/main/java/io/github/tutualican/yina/
   MainActivity.kt
   core/
     engine/        CollectionEngine + AnkiCollectionEngine

@@ -128,7 +128,7 @@ and no telemetry.
 
 ## Testing
 
-`app/src/test/java/io/github/yina/core/engine/AnkiCollectionEngineTest.kt` is a
+`app/src/test/java/io/github/tutualican/yina/core/engine/AnkiCollectionEngineTest.kt` is a
 Robolectric test against the real host backend. It imports a sample package,
 checks the deck projection, renders a card, answers it and verifies that the
 collection still opens with the answer persisted. This catches API mismatches,
