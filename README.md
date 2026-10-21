@@ -11,7 +11,7 @@ only to describe file-format compatibility.
 
 ## Download
 
-Signed APKs are attached to the [latest release](https://github.com/tutualican/yina/releases/latest).
+Signed APKs are attached to the [latest release](../../releases/latest).
 Most phones need the `arm64-v8a` build; `armeabi-v7a` is for older 32-bit
 devices, and `x86_64` is for emulators. Android 8.0 or newer is required.
 
