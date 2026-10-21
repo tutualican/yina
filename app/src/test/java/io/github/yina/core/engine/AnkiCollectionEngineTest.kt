@@ -149,6 +149,20 @@ class AnkiCollectionEngineTest {
         engine.deleteDeck(deckId)
     }
 
+    @Test
+    fun deletingParentDeckRemovesChildDecks() = runBlocking<Unit> {
+        engine.open()
+        val parentId = engine.createDeck("Yina parent")
+        val childId = engine.createDeck("Yina parent::Yina child")
+        engine.addBasicCard(childId, "Child front", "Child back")
+
+        engine.deleteDeck(parentId)
+
+        val snapshot = engine.open()
+        assertTrue("parent deck is gone", snapshot.decks.none { it.id == parentId })
+        assertTrue("child deck is gone", snapshot.decks.none { it.id == childId })
+    }
+
     private fun copyResource(name: String): File {
         val target = File(context.cacheDir, name)
         javaClass.classLoader!!.getResourceAsStream(name)!!.use { input ->
