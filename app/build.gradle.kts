@@ -23,8 +23,8 @@ android {
         applicationId = "io.github.yina"
         minSdk = 26
         targetSdk = 36
-        versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 2
-        versionName = System.getenv("VERSION_NAME") ?: "0.2.0"
+        versionCode = System.getenv("VERSION_CODE")?.toIntOrNull() ?: 3
+        versionName = System.getenv("VERSION_NAME") ?: "0.2.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
     }

@@ -120,8 +120,8 @@ It writes `release.jks` and `keystore.properties`; both are gitignored. Back the
 up: without the same key you cannot update an installed copy. Then:
 
 ```powershell
-$env:VERSION_NAME = "0.2.0"
-$env:VERSION_CODE = "2"
+$env:VERSION_NAME = "0.2.1"
+$env:VERSION_CODE = "3"
 .\gradlew :app:assembleRelease
 ```
 

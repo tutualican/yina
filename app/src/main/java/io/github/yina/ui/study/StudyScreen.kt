@@ -305,7 +305,9 @@ private fun RevealButton(
     ) {
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 16.dp),
         ) {
             Text(
                 text = stringResource(R.string.study_show_answer),
@@ -582,7 +584,12 @@ private fun DonePhase(
                 .heightIn(min = 56.dp)
                 .pressable(onClick = onExit),
         ) {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 16.dp),
+            ) {
                 Text(
                     text = stringResource(R.string.study_back_home),
                     style = MaterialTheme.typography.titleSmall,
