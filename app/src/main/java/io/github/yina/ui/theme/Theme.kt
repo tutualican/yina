@@ -4,6 +4,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 private val LightColors = lightColorScheme(
@@ -56,15 +58,25 @@ private val DarkColors = darkColorScheme(
     onError = Color(0xFF690005),
 )
 
+/**
+ * The effective appearance, including an explicit light/dark override.
+ *
+ * The card WebView needs this rather than [isSystemInDarkTheme], otherwise a
+ * user who forces light mode would still get Anki's night-mode card styling.
+ */
+val LocalYinaDarkTheme = staticCompositionLocalOf { false }
+
 @Composable
 fun YinaTheme(
     darkTheme: Boolean = androidx.compose.foundation.isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
-    MaterialTheme(
-        colorScheme = if (darkTheme) DarkColors else LightColors,
-        typography = YinaTypography,
-        shapes = YinaShapes,
-        content = content,
-    )
+    CompositionLocalProvider(LocalYinaDarkTheme provides darkTheme) {
+        MaterialTheme(
+            colorScheme = if (darkTheme) DarkColors else LightColors,
+            typography = YinaTypography,
+            shapes = YinaShapes,
+            content = content,
+        )
+    }
 }

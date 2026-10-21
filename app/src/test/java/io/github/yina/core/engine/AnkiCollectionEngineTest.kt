@@ -97,6 +97,58 @@ class AnkiCollectionEngineTest {
         }
     }
 
+    @Test
+    fun createsAddsRenamesAndDeletesDeck() = runBlocking {
+        engine.open()
+        val deckId = engine.createDeck("Yina management test")
+        assertTrue("deck id was returned", deckId > 0)
+
+        var snapshot = engine.open()
+        val created = snapshot.decks.firstOrNull { it.id == deckId }
+        assertNotNull("created deck is visible", created)
+        assertEquals("new deck is empty", 0, created!!.totalCards)
+
+        val noteId = engine.addBasicCard(deckId, "Front side", "Back side")
+        assertTrue("note id was returned", noteId > 0)
+
+        snapshot = engine.open()
+        val withCard = snapshot.decks.first { it.id == deckId }
+        assertEquals("one card was added", 1, withCard.totalCards)
+
+        engine.renameDeck(deckId, "Yina renamed")
+        snapshot = engine.open()
+        assertTrue(
+            "renamed deck kept its id",
+            snapshot.decks.any { it.id == deckId && it.name == "Yina renamed" },
+        )
+
+        val removed = engine.deleteDeck(deckId)
+        assertTrue("deleting the deck removed its card", removed >= 1)
+        snapshot = engine.open()
+        assertTrue("deleted deck is gone", snapshot.decks.none { it.id == deckId })
+    }
+
+    @Test
+    fun deletesCurrentCardDuringReview() = runBlocking<Unit> {
+        engine.open()
+        val deckId = engine.createDeck("Yina card delete test")
+        engine.addBasicCard(deckId, "Delete me", "Please")
+        engine.startSession(deckId)
+
+        assertNotNull("a new card is waiting", engine.nextCard())
+        assertTrue("the pending card is deleted", engine.deleteCurrentCard())
+
+        val snapshot = engine.open()
+        assertEquals(
+            "the deck is empty after deleting its only card",
+            0,
+            snapshot.decks.first { it.id == deckId }.totalCards,
+        )
+        assertTrue("there is no card left to delete", !engine.deleteCurrentCard())
+
+        engine.deleteDeck(deckId)
+    }
+
     private fun copyResource(name: String): File {
         val target = File(context.cacheDir, name)
         javaClass.classLoader!!.getResourceAsStream(name)!!.use { input ->

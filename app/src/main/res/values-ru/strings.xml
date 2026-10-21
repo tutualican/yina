@@ -58,4 +58,36 @@
         <item quantity="many">Изучено %1$d карточек.</item>
         <item quantity="other">Изучено %1$d карточки.</item>
     </plurals>
+    <string name="new_deck">Новая колода</string>
+    <string name="new_deck_title">Создать колоду</string>
+    <string name="deck_name_label">Название колоды</string>
+    <string name="deck_name_exists">Колода с таким названием уже существует.</string>
+    <string name="add_card">Добавить карточку</string>
+    <string name="add_card_title">Добавить карточку в %1$s</string>
+    <string name="front_label">Лицевая сторона</string>
+    <string name="back_label">Обратная сторона</string>
+    <string name="rename_deck">Переименовать колоду</string>
+    <string name="rename_deck_title">Переименовать колоду</string>
+    <string name="delete_deck">Удалить колоду</string>
+    <string name="delete_deck_title">Удалить колоду?</string>
+    <string name="delete_deck_message">«%1$s» и все её карточки будут удалены навсегда. Это действие нельзя отменить.</string>
+    <string name="delete">Удалить</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отмена</string>
+    <string name="deck_actions">Действия с колодой</string>
+    <string name="deck_created">Колода создана.</string>
+    <string name="card_added">Карточка добавлена.</string>
+    <string name="deck_renamed">Колода переименована.</string>
+    <string name="deck_deleted">Колода удалена.</string>
+    <string name="action_failed">Не удалось сохранить: %1$s</string>
+    <string name="action_failed_generic">коллекция отклонила изменение</string>
+    <string name="theme_title">Оформление</string>
+    <string name="theme_system">Как в системе</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="delete_card">Удалить карточку</string>
+    <string name="delete_card_title">Удалить эту карточку?</string>
+    <string name="delete_card_message">Эта карточка будет удалена навсегда. Это действие нельзя отменить.</string>
+    <string name="card_deleted">Карточка удалена.</string>
+    <string name="study_delete_failed">Не удалось удалить карточку.</string>
 </resources>

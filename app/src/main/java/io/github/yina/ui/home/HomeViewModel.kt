@@ -48,7 +48,7 @@ class HomeViewModel(
     }
 
     fun onImportPicked(uri: Uri, displayName: String?) {
-        if (_state.value.isImporting) return
+        if (_state.value.isImporting || _state.value.isWorking) return
         viewModelScope.launch {
             _state.update { it.copy(isImporting = true) }
             val result = runCatching { engine.importPackage(uri, displayName) }
@@ -79,6 +79,52 @@ class HomeViewModel(
                     )
                 }
             }
+        }
+    }
+
+    fun createDeck(name: String) {
+        runOperation(R.string.deck_created) { engine.createDeck(name) }
+    }
+
+    fun addCard(deckId: Long, front: String, back: String) {
+        runOperation(R.string.card_added) { engine.addBasicCard(deckId, front, back) }
+    }
+
+    fun renameDeck(deckId: Long, name: String) {
+        runOperation(R.string.deck_renamed) { engine.renameDeck(deckId, name) }
+    }
+
+    fun deleteDeck(deckId: Long) {
+        runOperation(R.string.deck_deleted) { engine.deleteDeck(deckId) }
+    }
+
+    private fun runOperation(
+        successMessage: Int,
+        operation: suspend () -> Any?,
+    ) {
+        if (_state.value.isWorking || _state.value.isImporting) return
+        viewModelScope.launch {
+            _state.update { it.copy(isWorking = true) }
+            val result = runCatching { operation() }
+            _state.update { it.copy(isWorking = false) }
+            result
+                .onSuccess {
+                    _state.update {
+                        it.copy(message = appContext.getString(successMessage))
+                    }
+                    refresh()
+                }
+                .onFailure { t ->
+                    _state.update {
+                        it.copy(
+                            message = appContext.getString(
+                                R.string.action_failed,
+                                t.message?.takeIf { reason -> reason.isNotBlank() }
+                                    ?: appContext.getString(R.string.action_failed_generic),
+                            ),
+                        )
+                    }
+                }
         }
     }
 

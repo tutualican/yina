@@ -6,6 +6,7 @@ import android.os.Build
 import android.system.Os
 import anki.card_rendering.RenderCardResponse
 import anki.decks.DeckTreeNode
+import anki.notetypes.Notetype
 import anki.scheduler.CardAnswer
 import anki.scheduler.SchedulingStates
 import io.github.yina.R
@@ -109,6 +110,65 @@ class AnkiCollectionEngine(
             }
         }
 
+    override suspend fun createDeck(name: String): Long = withContext(Dispatchers.IO) {
+        mutex.withLock {
+            ensureOpen()
+            val value = backend ?: error(appContext.getString(R.string.study_error))
+            val cleanName = name.trim()
+            require(cleanName.isNotEmpty()) { "Deck name is empty" }
+            val deck = value.newDeck().toBuilder().setName(cleanName).build()
+            value.addDeck(deck).id
+        }
+    }
+
+    override suspend fun addBasicCard(
+        deckId: Long,
+        front: String,
+        back: String,
+    ): Long = withContext(Dispatchers.IO) {
+        mutex.withLock {
+            ensureOpen()
+            val value = backend ?: error(appContext.getString(R.string.study_error))
+            require(front.isNotBlank() && back.isNotBlank()) { "Card fields are empty" }
+            val notetypeId = defaultBasicNotetype(value)
+            val note = value.newNote(notetypeId)
+            check(note.fieldsCount >= 2) { "The basic note type has too few fields" }
+            val filled = note.toBuilder()
+                .setFields(0, front)
+                .setFields(1, back)
+                .build()
+            value.addNote(filled, deckId).noteId
+        }
+    }
+
+    override suspend fun renameDeck(deckId: Long, name: String) =
+        withContext(Dispatchers.IO) {
+            mutex.withLock {
+                ensureOpen()
+                val value = backend ?: error(appContext.getString(R.string.study_error))
+                val cleanName = name.trim()
+                require(cleanName.isNotEmpty()) { "Deck name is empty" }
+                value.renameDeck(deckId, cleanName)
+                if (currentDeckId == deckId) {
+                    currentDeckName = cleanName
+                }
+            }
+        }
+
+    override suspend fun deleteDeck(deckId: Long): Int = withContext(Dispatchers.IO) {
+        mutex.withLock {
+            ensureOpen()
+            val value = backend ?: error(appContext.getString(R.string.study_error))
+            val changes = value.removeDecks(listOf(deckId))
+            pending = null
+            if (currentDeckId == deckId) {
+                currentDeckId = 0L
+                currentDeckName = ""
+            }
+            changes.count
+        }
+    }
+
     override suspend fun startSession(deckId: Long): SessionInfo = withContext(Dispatchers.IO) {
         mutex.withLock {
             ensureOpen()
@@ -206,6 +266,16 @@ class AnkiCollectionEngine(
             }
         }
 
+    override suspend fun deleteCurrentCard(): Boolean = withContext(Dispatchers.IO) {
+        mutex.withLock {
+            val value = backend ?: return@withLock false
+            val card = pending ?: return@withLock false
+            value.removeCards(listOf(card.cardId))
+            pending = null
+            true
+        }
+    }
+
     override suspend fun undo(): Boolean = withContext(Dispatchers.IO) {
         mutex.withLock {
             val value = backend ?: return@withLock false
@@ -273,6 +343,31 @@ class AnkiCollectionEngine(
         if (currentDeckName.isEmpty()) {
             currentDeckName = runCatching { value.getCurrentDeck().name }.getOrDefault("")
         }
+    }
+
+    /**
+     * Picks the collection's Basic note type. Imported collections can rename
+     * it, so fall back to the first normal note type with at least two fields.
+     */
+    private fun defaultBasicNotetype(value: Backend): Long {
+        val preferred = runCatching { value.getNotetypeIdByName("Basic") }.getOrNull()
+        if (preferred != null && preferred > 0L && isBasicNotetype(value, preferred)) {
+            return preferred
+        }
+        for (entry in value.getNotetypeNames()) {
+            if (isBasicNotetype(value, entry.id)) return entry.id
+        }
+        error("No basic note type found in this collection")
+    }
+
+    private fun isBasicNotetype(value: Backend, id: Long): Boolean {
+        val notetype = runCatching { value.getNotetype(id) }.getOrNull() ?: return false
+        val kind = if (notetype.hasConfig()) {
+            notetype.config.kind
+        } else {
+            Notetype.Config.Kind.KIND_NORMAL
+        }
+        return kind == Notetype.Config.Kind.KIND_NORMAL && notetype.fieldsCount >= 2
     }
 
     private fun readDecks(): CollectionSnapshot {

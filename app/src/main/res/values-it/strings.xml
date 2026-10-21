@@ -54,4 +54,36 @@
         <item quantity="other">Hai studiato %1$d carte.</item>
         <item quantity="many">Hai studiato %1$d carte.</item>
     </plurals>
+    <string name="new_deck">Nuovo mazzo</string>
+    <string name="new_deck_title">Crea un mazzo</string>
+    <string name="deck_name_label">Nome del mazzo</string>
+    <string name="deck_name_exists">Esiste già un mazzo con questo nome.</string>
+    <string name="add_card">Aggiungi carta</string>
+    <string name="add_card_title">Aggiungi carta a %1$s</string>
+    <string name="front_label">Fronte</string>
+    <string name="back_label">Retro</string>
+    <string name="rename_deck">Rinomina mazzo</string>
+    <string name="rename_deck_title">Rinomina mazzo</string>
+    <string name="delete_deck">Elimina mazzo</string>
+    <string name="delete_deck_title">Eliminare il mazzo?</string>
+    <string name="delete_deck_message">“%1$s” e tutte le sue carte verranno eliminati definitivamente. L’operazione non può essere annullata.</string>
+    <string name="delete">Elimina</string>
+    <string name="save">Salva</string>
+    <string name="cancel">Annulla</string>
+    <string name="deck_actions">Azioni del mazzo</string>
+    <string name="deck_created">Mazzo creato.</string>
+    <string name="card_added">Carta aggiunta.</string>
+    <string name="deck_renamed">Mazzo rinominato.</string>
+    <string name="deck_deleted">Mazzo eliminato.</string>
+    <string name="action_failed">Impossibile salvare: %1$s</string>
+    <string name="action_failed_generic">la raccolta ha rifiutato la modifica</string>
+    <string name="theme_title">Aspetto</string>
+    <string name="theme_system">Segui il sistema</string>
+    <string name="theme_light">Chiaro</string>
+    <string name="theme_dark">Scuro</string>
+    <string name="delete_card">Elimina carta</string>
+    <string name="delete_card_title">Eliminare questa carta?</string>
+    <string name="delete_card_message">Questa carta verrà eliminata definitivamente. L’operazione non può essere annullata.</string>
+    <string name="card_deleted">Carta eliminata.</string>
+    <string name="study_delete_failed">Impossibile eliminare la carta.</string>
 </resources>

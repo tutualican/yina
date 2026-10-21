@@ -24,6 +24,32 @@ interface CollectionEngine {
     suspend fun importPackage(uri: Uri, displayName: String?): ImportResult
 
     /**
+     * Creates a normal deck and returns its id.
+     *
+     * Anki treats `::` in a name as the deck hierarchy separator, so
+     * `Languages::Japanese` creates the parent as needed.
+     */
+    suspend fun createDeck(name: String): Long
+
+    /**
+     * Adds one basic note to [deckId].
+     *
+     * [front] and [back] are Anki field HTML. The caller decides whether the
+     * user's input is plain text or formatted HTML.
+     */
+    suspend fun addBasicCard(deckId: Long, front: String, back: String): Long
+
+    /** Renames a deck, preserving its id and cards. */
+    suspend fun renameDeck(deckId: Long, name: String)
+
+    /**
+     * Deletes a deck and the cards Anki removes with it.
+     *
+     * @return the number of cards Anki removed.
+     */
+    suspend fun deleteDeck(deckId: Long): Int
+
+    /**
      * Selects [deckId] and starts a review session.
      *
      * Anki keeps the selected deck in the collection, so this also makes the
@@ -41,6 +67,14 @@ interface CollectionEngine {
 
     /** Answers the currently pending card with Anki's own scheduler. */
     suspend fun answer(rating: StudyRating, millisecondsTaken: Long)
+
+    /**
+     * Deletes the card currently waiting for an answer.
+     *
+     * Returns false when there is no pending card. Anki keeps the note, so a
+     * note that produces several cards only loses the card being reviewed.
+     */
+    suspend fun deleteCurrentCard(): Boolean
 
     /** Undoes the most recent answer. Returns false if there was nothing to undo. */
     suspend fun undo(): Boolean

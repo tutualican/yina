@@ -31,10 +31,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -76,6 +85,7 @@ import io.github.yina.core.model.Deck
 import io.github.yina.di.AppContainer
 import io.github.yina.ui.components.pressable
 import io.github.yina.ui.theme.Motion
+import io.github.yina.ui.theme.ThemeMode
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -86,6 +96,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreen(
     onOpenDeck: (Long) -> Unit,
+    themeMode: ThemeMode,
+    onThemeModeChange: (ThemeMode) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -95,6 +107,8 @@ fun HomeScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     var showAbout by remember { mutableStateOf(false) }
+    var dialog by remember { mutableStateOf<HomeDialog?>(null) }
+    val isBusy = state.isImporting || state.isWorking
 
     LaunchedEffect(Unit) {
         viewModel.refresh()
@@ -120,6 +134,60 @@ fun HomeScreen(
 
     if (showAbout) {
         AboutDialog(onDismiss = { showAbout = false })
+    }
+
+    when (val active = dialog) {
+        HomeDialog.NewDeck -> NewDeckDialog(
+            existingNames = state.decks.map { it.name },
+            isWorking = state.isWorking,
+            onDismiss = { dialog = null },
+            onCreate = { name ->
+                dialog = null
+                viewModel.createDeck(name)
+            },
+        )
+
+        is HomeDialog.AddCard -> AddCardDialog(
+            deck = active.deck,
+            isWorking = state.isWorking,
+            onDismiss = { dialog = null },
+            onAdd = { front, back ->
+                dialog = null
+                viewModel.addCard(active.deck.id, front, back)
+            },
+        )
+
+        is HomeDialog.RenameDeck -> RenameDeckDialog(
+            deck = active.deck,
+            existingNames = state.decks.map { it.name },
+            isWorking = state.isWorking,
+            onDismiss = { dialog = null },
+            onRename = { name ->
+                dialog = null
+                viewModel.renameDeck(active.deck.id, name)
+            },
+        )
+
+        is HomeDialog.DeleteDeck -> DeleteDeckDialog(
+            deck = active.deck,
+            isWorking = state.isWorking,
+            onDismiss = { dialog = null },
+            onDelete = {
+                dialog = null
+                viewModel.deleteDeck(active.deck.id)
+            },
+        )
+
+        HomeDialog.Theme -> ThemeDialog(
+            current = themeMode,
+            onSelect = {
+                onThemeModeChange(it)
+                dialog = null
+            },
+            onDismiss = { dialog = null },
+        )
+
+        null -> Unit
     }
 
     val startDeck = state.decks.firstOrNull { it.dueCards > 0 }
@@ -153,12 +221,17 @@ fun HomeScreen(
             contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 8.dp, bottom = 32.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
-            item { Header(onImport = pickPackage) }
+            item {
+                Header(
+                    onImport = pickPackage,
+                    onTheme = { dialog = HomeDialog.Theme },
+                )
+            }
 
             item {
                 FocusCard(
                     dueCount = state.totalDue,
-                    isImporting = state.isImporting,
+                    isBusy = isBusy,
                     onStart = {
                         val deck = startDeck
                         if (deck != null) onOpenDeck(deck.id) else pickPackage()
@@ -186,18 +259,38 @@ fun HomeScreen(
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
+                        Spacer(Modifier.width(8.dp))
+                    }
+                    RoundIconButton(
+                        onClick = { dialog = HomeDialog.NewDeck },
+                        description = stringResource(R.string.new_deck),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Add,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.size(20.dp),
+                        )
                     }
                 }
             }
 
             if (state.decks.isEmpty()) {
-                item { EmptyState(onImport = pickPackage) }
+                item {
+                    EmptyState(
+                        onImport = pickPackage,
+                        onCreateDeck = { dialog = HomeDialog.NewDeck },
+                    )
+                }
             } else {
                 items(state.decks, key = { it.id }) { deck ->
                     SwipeableDeckRow(
                         deck = deck,
                         onOpen = { onOpenDeck(deck.id) },
                         onStudy = { onOpenDeck(deck.id) },
+                        onAddCard = { dialog = HomeDialog.AddCard(deck) },
+                        onRename = { dialog = HomeDialog.RenameDeck(deck) },
+                        onDelete = { dialog = HomeDialog.DeleteDeck(deck) },
                     )
                 }
             }
@@ -219,6 +312,7 @@ fun HomeScreen(
 @Composable
 private fun Header(
     onImport: () -> Unit,
+    onTheme: () -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -239,10 +333,21 @@ private fun Header(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
-        val importDescription = stringResource(R.string.import_content_description)
+        RoundIconButton(
+            onClick = onTheme,
+            description = stringResource(R.string.theme_title),
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Settings,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.size(20.dp),
+            )
+        }
+        Spacer(Modifier.width(8.dp))
         RoundIconButton(
             onClick = onImport,
-            description = importDescription,
+            description = stringResource(R.string.import_content_description),
         ) {
             Icon(
                 imageVector = Icons.Filled.Add,
@@ -277,7 +382,7 @@ private fun RoundIconButton(
 @Composable
 private fun FocusCard(
     dueCount: Int,
-    isImporting: Boolean,
+    isBusy: Boolean,
     onStart: () -> Unit,
     onImport: () -> Unit,
 ) {
@@ -337,7 +442,7 @@ private fun FocusCard(
                 PrimaryPill(
                     label = stringResource(R.string.start_focus),
                     icon = Icons.Filled.PlayArrow,
-                    enabled = !isImporting,
+                    enabled = !isBusy,
                     onClick = onStart,
                 )
             } else {
@@ -356,7 +461,7 @@ private fun FocusCard(
                 PrimaryPill(
                     label = stringResource(R.string.import_action),
                     icon = Icons.Filled.Add,
-                    enabled = !isImporting,
+                    enabled = !isBusy,
                     onClick = onImport,
                 )
             }
@@ -401,9 +506,13 @@ private fun SwipeableDeckRow(
     deck: Deck,
     onOpen: () -> Unit,
     onStudy: () -> Unit,
+    onAddCard: () -> Unit,
+    onRename: () -> Unit,
+    onDelete: () -> Unit,
 ) {
     val thresholdPx = with(LocalDensity.current) { Motion.SWIPE_THRESHOLD_DP.dp.toPx() }
     var offsetX by remember(deck.id) { mutableFloatStateOf(0f) }
+    var menuOpen by remember(deck.id) { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val reveal = (offsetX / thresholdPx).coerceIn(0f, 1f)
     val shape = RoundedCornerShape(22.dp)
@@ -530,6 +639,63 @@ private fun SwipeableDeckRow(
                         modifier = Modifier.size(18.dp),
                     )
                 }
+
+                Box {
+                    IconButton(onClick = { menuOpen = true }) {
+                        Icon(
+                            imageVector = Icons.Filled.MoreVert,
+                            contentDescription = stringResource(R.string.deck_actions),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(20.dp),
+                        )
+                    }
+                    DropdownMenu(
+                        expanded = menuOpen,
+                        onDismissRequest = { menuOpen = false },
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.add_card)) },
+                            leadingIcon = {
+                                Icon(Icons.Filled.Add, contentDescription = null)
+                            },
+                            onClick = {
+                                menuOpen = false
+                                onAddCard()
+                            },
+                        )
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.rename_deck)) },
+                            leadingIcon = {
+                                Icon(Icons.Filled.Edit, contentDescription = null)
+                            },
+                            onClick = {
+                                menuOpen = false
+                                onRename()
+                            },
+                        )
+                        if (deck.id != 1L) {
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        text = stringResource(R.string.delete_deck),
+                                        color = MaterialTheme.colorScheme.error,
+                                    )
+                                },
+                                leadingIcon = {
+                                    Icon(
+                                        Icons.Filled.Delete,
+                                        contentDescription = null,
+                                        tint = MaterialTheme.colorScheme.error,
+                                    )
+                                },
+                                onClick = {
+                                    menuOpen = false
+                                    onDelete()
+                                },
+                            )
+                        }
+                    }
+                }
             }
         }
     }
@@ -552,7 +718,10 @@ private fun settleBack(
 }
 
 @Composable
-private fun EmptyState(onImport: () -> Unit) {
+private fun EmptyState(
+    onImport: () -> Unit,
+    onCreateDeck: () -> Unit,
+) {
     Surface(
         shape = RoundedCornerShape(26.dp),
         color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.45f),
@@ -570,21 +739,266 @@ private fun EmptyState(onImport: () -> Unit) {
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Spacer(Modifier.height(18.dp))
-            Surface(
-                shape = CircleShape,
-                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
-                contentColor = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.pressable(onClick = onImport),
-            ) {
-                Text(
-                    text = stringResource(R.string.import_action),
-                    style = MaterialTheme.typography.labelLarge,
-                    modifier = Modifier.padding(horizontal = 18.dp, vertical = 11.dp),
-                )
+            PrimaryPill(
+                label = stringResource(R.string.new_deck),
+                icon = Icons.Filled.Add,
+                enabled = true,
+                onClick = onCreateDeck,
+            )
+            TextButton(onClick = onImport) {
+                Text(stringResource(R.string.import_action))
             }
         }
     }
 }
+
+private sealed interface HomeDialog {
+    data object NewDeck : HomeDialog
+    data class AddCard(val deck: Deck) : HomeDialog
+    data class RenameDeck(val deck: Deck) : HomeDialog
+    data class DeleteDeck(val deck: Deck) : HomeDialog
+    data object Theme : HomeDialog
+}
+
+@Composable
+private fun NewDeckDialog(
+    existingNames: List<String>,
+    isWorking: Boolean,
+    onDismiss: () -> Unit,
+    onCreate: (String) -> Unit,
+) {
+    var name by remember { mutableStateOf("") }
+    val cleanName = name.trim()
+    val duplicate = existingNames.any { it.equals(cleanName, ignoreCase = true) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.new_deck_title)) },
+        text = {
+            OutlinedTextField(
+                value = name,
+                onValueChange = { name = it },
+                label = { Text(stringResource(R.string.deck_name_label)) },
+                singleLine = true,
+                isError = duplicate,
+                supportingText = if (duplicate) {
+                    { Text(stringResource(R.string.deck_name_exists)) }
+                } else {
+                    null
+                },
+            )
+        },
+        confirmButton = {
+            TextButton(
+                enabled = cleanName.isNotEmpty() && !duplicate && !isWorking,
+                onClick = { onCreate(cleanName) },
+            ) {
+                Text(stringResource(R.string.save))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss, enabled = !isWorking) {
+                Text(stringResource(R.string.cancel))
+            }
+        },
+        containerColor = MaterialTheme.colorScheme.surface,
+    )
+}
+
+@Composable
+private fun AddCardDialog(
+    deck: Deck,
+    isWorking: Boolean,
+    onDismiss: () -> Unit,
+    onAdd: (String, String) -> Unit,
+) {
+    var front by remember(deck.id) { mutableStateOf("") }
+    var back by remember(deck.id) { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.add_card_title, deck.name)) },
+        text = {
+            Column {
+                OutlinedTextField(
+                    value = front,
+                    onValueChange = { front = it },
+                    label = { Text(stringResource(R.string.front_label)) },
+                    minLines = 2,
+                    maxLines = 5,
+                )
+                Spacer(Modifier.height(10.dp))
+                OutlinedTextField(
+                    value = back,
+                    onValueChange = { back = it },
+                    label = { Text(stringResource(R.string.back_label)) },
+                    minLines = 3,
+                    maxLines = 8,
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(
+                enabled = front.isNotBlank() && back.isNotBlank() && !isWorking,
+                onClick = { onAdd(front.toAnkiField(), back.toAnkiField()) },
+            ) {
+                Text(stringResource(R.string.save))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss, enabled = !isWorking) {
+                Text(stringResource(R.string.cancel))
+            }
+        },
+        containerColor = MaterialTheme.colorScheme.surface,
+    )
+}
+
+@Composable
+private fun RenameDeckDialog(
+    deck: Deck,
+    existingNames: List<String>,
+    isWorking: Boolean,
+    onDismiss: () -> Unit,
+    onRename: (String) -> Unit,
+) {
+    var name by remember(deck.id) { mutableStateOf(deck.name) }
+    val cleanName = name.trim()
+    val duplicate = existingNames.any {
+        !it.equals(deck.name, ignoreCase = true) &&
+            it.equals(cleanName, ignoreCase = true)
+    }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.rename_deck_title)) },
+        text = {
+            OutlinedTextField(
+                value = name,
+                onValueChange = { name = it },
+                label = { Text(stringResource(R.string.deck_name_label)) },
+                singleLine = true,
+                isError = duplicate,
+                supportingText = if (duplicate) {
+                    { Text(stringResource(R.string.deck_name_exists)) }
+                } else {
+                    null
+                },
+            )
+        },
+        confirmButton = {
+            TextButton(
+                enabled = cleanName.isNotEmpty() && !duplicate && !isWorking,
+                onClick = { onRename(cleanName) },
+            ) {
+                Text(stringResource(R.string.save))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss, enabled = !isWorking) {
+                Text(stringResource(R.string.cancel))
+            }
+        },
+        containerColor = MaterialTheme.colorScheme.surface,
+    )
+}
+
+@Composable
+private fun DeleteDeckDialog(
+    deck: Deck,
+    isWorking: Boolean,
+    onDismiss: () -> Unit,
+    onDelete: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.delete_deck_title)) },
+        text = { Text(stringResource(R.string.delete_deck_message, deck.name)) },
+        confirmButton = {
+            TextButton(enabled = !isWorking, onClick = onDelete) {
+                Text(
+                    text = stringResource(R.string.delete),
+                    color = MaterialTheme.colorScheme.error,
+                )
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss, enabled = !isWorking) {
+                Text(stringResource(R.string.cancel))
+            }
+        },
+        containerColor = MaterialTheme.colorScheme.surface,
+    )
+}
+
+@Composable
+private fun ThemeDialog(
+    current: ThemeMode,
+    onSelect: (ThemeMode) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.theme_title)) },
+        text = {
+            Column {
+                ThemeChoice(
+                    label = stringResource(R.string.theme_system),
+                    selected = current == ThemeMode.SYSTEM,
+                    onClick = { onSelect(ThemeMode.SYSTEM) },
+                )
+                ThemeChoice(
+                    label = stringResource(R.string.theme_light),
+                    selected = current == ThemeMode.LIGHT,
+                    onClick = { onSelect(ThemeMode.LIGHT) },
+                )
+                ThemeChoice(
+                    label = stringResource(R.string.theme_dark),
+                    selected = current == ThemeMode.DARK,
+                    onClick = { onSelect(ThemeMode.DARK) },
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(R.string.close))
+            }
+        },
+        containerColor = MaterialTheme.colorScheme.surface,
+    )
+}
+
+@Composable
+private fun ThemeChoice(
+    label: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .pressable(onClick = onClick)
+            .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        RadioButton(selected = selected, onClick = null)
+        Spacer(Modifier.width(8.dp))
+        Text(text = label, style = MaterialTheme.typography.bodyLarge)
+    }
+}
+
+/**
+ * The simple editor is plain text. Anki stores fields as HTML, so escape the
+ * user's text and turn line breaks into paragraphs instead of letting the
+ * WebView interpret accidental markup.
+ */
+private fun String.toAnkiField(): String = trim()
+    .replace("\r\n", "\n")
+    .replace("\r", "")
+    .replace("&", "&amp;")
+    .replace("<", "&lt;")
+    .replace(">", "&gt;")
+    .replace("\n", "<br>")
 
 private fun queryDisplayName(context: android.content.Context, uri: android.net.Uri): String? =
     runCatching {

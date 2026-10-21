@@ -50,4 +50,36 @@
         <item quantity="one">Du hast %1$d Karte gelernt.</item>
         <item quantity="other">Du hast %1$d Karten gelernt.</item>
     </plurals>
+    <string name="new_deck">Neues Deck</string>
+    <string name="new_deck_title">Deck erstellen</string>
+    <string name="deck_name_label">Deckname</string>
+    <string name="deck_name_exists">Ein Deck mit diesem Namen existiert bereits.</string>
+    <string name="add_card">Karte hinzufügen</string>
+    <string name="add_card_title">Karte zu %1$s hinzufügen</string>
+    <string name="front_label">Vorderseite</string>
+    <string name="back_label">Rückseite</string>
+    <string name="rename_deck">Deck umbenennen</string>
+    <string name="rename_deck_title">Deck umbenennen</string>
+    <string name="delete_deck">Deck löschen</string>
+    <string name="delete_deck_title">Deck löschen?</string>
+    <string name="delete_deck_message">„%1$s“ und alle enthaltenen Karten werden dauerhaft gelöscht. Das kann nicht rückgängig gemacht werden.</string>
+    <string name="delete">Löschen</string>
+    <string name="save">Speichern</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="deck_actions">Deck-Aktionen</string>
+    <string name="deck_created">Deck erstellt.</string>
+    <string name="card_added">Karte hinzugefügt.</string>
+    <string name="deck_renamed">Deck umbenannt.</string>
+    <string name="deck_deleted">Deck gelöscht.</string>
+    <string name="action_failed">Speichern fehlgeschlagen: %1$s</string>
+    <string name="action_failed_generic">die Sammlung hat die Änderung abgelehnt</string>
+    <string name="theme_title">Darstellung</string>
+    <string name="theme_system">System folgen</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="delete_card">Karte löschen</string>
+    <string name="delete_card_title">Diese Karte löschen?</string>
+    <string name="delete_card_message">Diese Karte wird dauerhaft gelöscht. Das kann nicht rückgängig gemacht werden.</string>
+    <string name="card_deleted">Karte gelöscht.</string>
+    <string name="study_delete_failed">Die Karte konnte nicht gelöscht werden.</string>
 </resources>

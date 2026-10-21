@@ -54,4 +54,36 @@
         <item quantity="other">Você estudou %1$d cartões.</item>
         <item quantity="many">Você estudou %1$d cartões.</item>
     </plurals>
+    <string name="new_deck">Novo baralho</string>
+    <string name="new_deck_title">Criar um baralho</string>
+    <string name="deck_name_label">Nome do baralho</string>
+    <string name="deck_name_exists">Já existe um baralho com este nome.</string>
+    <string name="add_card">Adicionar cartão</string>
+    <string name="add_card_title">Adicionar cartão a %1$s</string>
+    <string name="front_label">Frente</string>
+    <string name="back_label">Verso</string>
+    <string name="rename_deck">Renomear baralho</string>
+    <string name="rename_deck_title">Renomear baralho</string>
+    <string name="delete_deck">Excluir baralho</string>
+    <string name="delete_deck_title">Excluir baralho?</string>
+    <string name="delete_deck_message">“%1$s” e todos os seus cartões serão excluídos permanentemente. Esta ação não pode ser desfeita.</string>
+    <string name="delete">Excluir</string>
+    <string name="save">Salvar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="deck_actions">Ações do baralho</string>
+    <string name="deck_created">Baralho criado.</string>
+    <string name="card_added">Cartão adicionado.</string>
+    <string name="deck_renamed">Baralho renomeado.</string>
+    <string name="deck_deleted">Baralho excluído.</string>
+    <string name="action_failed">Não foi possível salvar: %1$s</string>
+    <string name="action_failed_generic">a coleção recusou a alteração</string>
+    <string name="theme_title">Aparência</string>
+    <string name="theme_system">Seguir o sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="delete_card">Excluir cartão</string>
+    <string name="delete_card_title">Excluir este cartão?</string>
+    <string name="delete_card_message">Este cartão será excluído permanentemente. Esta ação não pode ser desfeita.</string>
+    <string name="card_deleted">Cartão excluído.</string>
+    <string name="study_delete_failed">Não foi possível excluir o cartão.</string>
 </resources>

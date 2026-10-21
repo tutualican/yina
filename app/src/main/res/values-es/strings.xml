@@ -54,4 +54,36 @@
         <item quantity="other">Estudiaste %1$d tarjetas.</item>
         <item quantity="many">Estudiaste %1$d tarjetas.</item>
     </plurals>
+    <string name="new_deck">Nuevo mazo</string>
+    <string name="new_deck_title">Crear un mazo</string>
+    <string name="deck_name_label">Nombre del mazo</string>
+    <string name="deck_name_exists">Ya existe un mazo con este nombre.</string>
+    <string name="add_card">Añadir tarjeta</string>
+    <string name="add_card_title">Añadir tarjeta a %1$s</string>
+    <string name="front_label">Anverso</string>
+    <string name="back_label">Reverso</string>
+    <string name="rename_deck">Cambiar nombre del mazo</string>
+    <string name="rename_deck_title">Cambiar nombre del mazo</string>
+    <string name="delete_deck">Eliminar mazo</string>
+    <string name="delete_deck_title">¿Eliminar mazo?</string>
+    <string name="delete_deck_message">“%1$s” y todas sus tarjetas se eliminarán de forma permanente. Esta acción no se puede deshacer.</string>
+    <string name="delete">Eliminar</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="deck_actions">Acciones del mazo</string>
+    <string name="deck_created">Mazo creado.</string>
+    <string name="card_added">Tarjeta añadida.</string>
+    <string name="deck_renamed">Nombre del mazo cambiado.</string>
+    <string name="deck_deleted">Mazo eliminado.</string>
+    <string name="action_failed">No se pudo guardar: %1$s</string>
+    <string name="action_failed_generic">la colección rechazó el cambio</string>
+    <string name="theme_title">Apariencia</string>
+    <string name="theme_system">Seguir el sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="delete_card">Eliminar tarjeta</string>
+    <string name="delete_card_title">¿Eliminar esta tarjeta?</string>
+    <string name="delete_card_message">Esta tarjeta se eliminará permanentemente. Esta acción no se puede deshacer.</string>
+    <string name="card_deleted">Tarjeta eliminada.</string>
+    <string name="study_delete_failed">No se pudo eliminar la tarjeta.</string>
 </resources>

@@ -58,4 +58,36 @@
         <item quantity="many">Przerobiono %1$d kart.</item>
         <item quantity="other">Przerobiono %1$d karty.</item>
     </plurals>
+    <string name="new_deck">Nowa talia</string>
+    <string name="new_deck_title">Utwórz talię</string>
+    <string name="deck_name_label">Nazwa talii</string>
+    <string name="deck_name_exists">Talia o tej nazwie już istnieje.</string>
+    <string name="add_card">Dodaj kartę</string>
+    <string name="add_card_title">Dodaj kartę do %1$s</string>
+    <string name="front_label">Przód</string>
+    <string name="back_label">Tył</string>
+    <string name="rename_deck">Zmień nazwę talii</string>
+    <string name="rename_deck_title">Zmień nazwę talii</string>
+    <string name="delete_deck">Usuń talię</string>
+    <string name="delete_deck_title">Usunąć talię?</string>
+    <string name="delete_deck_message">„%1$s” i wszystkie jej karty zostaną trwale usunięte. Tej operacji nie można cofnąć.</string>
+    <string name="delete">Usuń</string>
+    <string name="save">Zapisz</string>
+    <string name="cancel">Anuluj</string>
+    <string name="deck_actions">Działania talii</string>
+    <string name="deck_created">Utworzono talię.</string>
+    <string name="card_added">Dodano kartę.</string>
+    <string name="deck_renamed">Zmieniono nazwę talii.</string>
+    <string name="deck_deleted">Usunięto talię.</string>
+    <string name="action_failed">Nie udało się zapisać: %1$s</string>
+    <string name="action_failed_generic">kolekcja odrzuciła zmianę</string>
+    <string name="theme_title">Wygląd</string>
+    <string name="theme_system">Zgodnie z systemem</string>
+    <string name="theme_light">Jasny</string>
+    <string name="theme_dark">Ciemny</string>
+    <string name="delete_card">Usuń kartę</string>
+    <string name="delete_card_title">Usunąć tę kartę?</string>
+    <string name="delete_card_message">Ta karta zostanie trwale usunięta. Tej operacji nie można cofnąć.</string>
+    <string name="card_deleted">Usunięto kartę.</string>
+    <string name="study_delete_failed">Nie udało się usunąć karty.</string>
 </resources>

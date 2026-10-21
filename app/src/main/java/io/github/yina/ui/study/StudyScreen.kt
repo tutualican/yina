@@ -27,6 +27,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -62,8 +64,8 @@ import io.github.yina.core.engine.AnswerOption
 import io.github.yina.core.engine.StudyRating
 import io.github.yina.di.AppContainer
 import io.github.yina.ui.components.pressable
+import io.github.yina.ui.theme.LocalYinaDarkTheme
 import io.github.yina.ui.theme.Motion
-import androidx.compose.foundation.isSystemInDarkTheme
 
 @Composable
 fun StudyScreen(
@@ -78,20 +80,46 @@ fun StudyScreen(
     )
     val state by viewModel.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+    var showDeleteDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         viewModel.start()
     }
 
-    LaunchedEffect(state.message, state.card) {
-        val message = state.message
-        if (message != null && state.card != null) {
-            snackbarHostState.showSnackbar(message)
-            viewModel.consumeMessage()
-        }
+    LaunchedEffect(state.message) {
+        val message = state.message ?: return@LaunchedEffect
+        snackbarHostState.showSnackbar(message)
+        viewModel.consumeMessage()
     }
 
     BackHandler(onBack = onExit)
+
+    if (showDeleteDialog) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = false },
+            title = { Text(stringResource(R.string.delete_card_title)) },
+            text = { Text(stringResource(R.string.delete_card_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showDeleteDialog = false
+                        viewModel.deleteCurrentCard()
+                    },
+                ) {
+                    Text(
+                        text = stringResource(R.string.delete),
+                        color = MaterialTheme.colorScheme.error,
+                    )
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteDialog = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            },
+            containerColor = MaterialTheme.colorScheme.surface,
+        )
+    }
 
     Scaffold(
         modifier = modifier,
@@ -107,8 +135,10 @@ fun StudyScreen(
                 deckName = state.deckName,
                 remaining = state.remaining,
                 canUndo = state.canUndo && !state.isCompleted,
+                canDelete = state.card != null && !state.isAnswering && !state.isCompleted,
                 onBack = onExit,
                 onUndo = viewModel::undo,
+                onDelete = { showDeleteDialog = true },
             )
 
             AnimatedContent(
@@ -160,8 +190,10 @@ private fun StudyTopBar(
     deckName: String,
     remaining: Int,
     canUndo: Boolean,
+    canDelete: Boolean,
     onBack: () -> Unit,
     onUndo: () -> Unit,
+    onDelete: () -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -211,9 +243,10 @@ private fun StudyTopBar(
             }
         }
 
-        Box(
-            modifier = Modifier.width(92.dp),
-            contentAlignment = Alignment.CenterEnd,
+        Row(
+            modifier = Modifier.width(104.dp),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             if (canUndo) {
                 TextButton(onClick = onUndo) {
@@ -223,6 +256,27 @@ private fun StudyTopBar(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
                     )
+                }
+            }
+            if (canDelete) {
+                Surface(
+                    shape = CircleShape,
+                    color = Color.Transparent,
+                    modifier = Modifier
+                        .size(40.dp)
+                        .pressable(onClick = onDelete),
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.fillMaxSize(),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Delete,
+                            contentDescription = stringResource(R.string.delete_card),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(20.dp),
+                        )
+                    }
                 }
             }
         }
@@ -236,7 +290,7 @@ private fun CardPhase(
     onAnswer: (StudyRating) -> Unit,
 ) {
     val card = state.card ?: return
-    val dark = isSystemInDarkTheme()
+    val dark = LocalYinaDarkTheme.current
 
     Column(modifier = Modifier.fillMaxSize()) {
         Surface(

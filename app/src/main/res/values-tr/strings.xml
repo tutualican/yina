@@ -51,4 +51,36 @@
         <item quantity="one">%1$d kart çalıştın.</item>
         <item quantity="other">%1$d kart çalıştın.</item>
     </plurals>
+    <string name="new_deck">Yeni deste</string>
+    <string name="new_deck_title">Deste oluştur</string>
+    <string name="deck_name_label">Deste adı</string>
+    <string name="deck_name_exists">Bu adda bir deste zaten var.</string>
+    <string name="add_card">Kart ekle</string>
+    <string name="add_card_title">%1$s destesine kart ekle</string>
+    <string name="front_label">Ön</string>
+    <string name="back_label">Arka</string>
+    <string name="rename_deck">Desteyi yeniden adlandır</string>
+    <string name="rename_deck_title">Desteyi yeniden adlandır</string>
+    <string name="delete_deck">Desteyi sil</string>
+    <string name="delete_deck_title">Deste silinsin mi?</string>
+    <string name="delete_deck_message">“%1$s” destesi ve içindeki tüm kartlar kalıcı olarak silinecek. Bu işlem geri alınamaz.</string>
+    <string name="delete">Sil</string>
+    <string name="save">Kaydet</string>
+    <string name="cancel">İptal</string>
+    <string name="deck_actions">Deste işlemleri</string>
+    <string name="deck_created">Deste oluşturuldu.</string>
+    <string name="card_added">Kart eklendi.</string>
+    <string name="deck_renamed">Deste yeniden adlandırıldı.</string>
+    <string name="deck_deleted">Deste silindi.</string>
+    <string name="action_failed">Kaydedilemedi: %1$s</string>
+    <string name="action_failed_generic">koleksiyon değişikliği reddetti</string>
+    <string name="theme_title">Görünüm</string>
+    <string name="theme_system">Sistemle aynı</string>
+    <string name="theme_light">Açık</string>
+    <string name="theme_dark">Koyu</string>
+    <string name="delete_card">Kartı sil</string>
+    <string name="delete_card_title">Bu kart silinsin mi?</string>
+    <string name="delete_card_message">Bu kart kalıcı olarak silinecek. Bu işlem geri alınamaz.</string>
+    <string name="card_deleted">Kart silindi.</string>
+    <string name="study_delete_failed">Kart silinemedi.</string>
 </resources>

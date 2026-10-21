@@ -46,4 +46,36 @@
     <plurals name="study_done_body">
         <item quantity="other">已学习 %1$d 张卡片。</item>
     </plurals>
+    <string name="new_deck">新建牌组</string>
+    <string name="new_deck_title">创建牌组</string>
+    <string name="deck_name_label">牌组名称</string>
+    <string name="deck_name_exists">已存在同名牌组。</string>
+    <string name="add_card">添加卡片</string>
+    <string name="add_card_title">向 %1$s 添加卡片</string>
+    <string name="front_label">正面</string>
+    <string name="back_label">背面</string>
+    <string name="rename_deck">重命名牌组</string>
+    <string name="rename_deck_title">重命名牌组</string>
+    <string name="delete_deck">删除牌组</string>
+    <string name="delete_deck_title">删除牌组？</string>
+    <string name="delete_deck_message">“%1$s”及其中的所有卡片将被永久删除。此操作无法撤销。</string>
+    <string name="delete">删除</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="deck_actions">牌组操作</string>
+    <string name="deck_created">牌组已创建。</string>
+    <string name="card_added">卡片已添加。</string>
+    <string name="deck_renamed">牌组已重命名。</string>
+    <string name="deck_deleted">牌组已删除。</string>
+    <string name="action_failed">无法保存：%1$s</string>
+    <string name="action_failed_generic">集合拒绝了此更改</string>
+    <string name="theme_title">外观</string>
+    <string name="theme_system">跟随系统</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_dark">深色</string>
+    <string name="delete_card">删除卡片</string>
+    <string name="delete_card_title">删除此卡片？</string>
+    <string name="delete_card_message">此卡片将被永久删除。此操作无法撤销。</string>
+    <string name="card_deleted">卡片已删除。</string>
+    <string name="study_delete_failed">无法删除卡片。</string>
 </resources>

@@ -104,6 +104,26 @@ class StudyViewModel(
         }
     }
 
+    fun deleteCurrentCard() {
+        val current = _state.value
+        if (current.card == null || current.isAnswering) return
+        _state.update { it.copy(isAnswering = true) }
+        viewModelScope.launch {
+            val deleted = runCatching { engine.deleteCurrentCard() }.getOrDefault(false)
+            if (deleted) {
+                _state.update { it.copy(canUndo = false) }
+                loadNext(appContext.getString(R.string.card_deleted))
+            } else {
+                _state.update {
+                    it.copy(
+                        isAnswering = false,
+                        message = appContext.getString(R.string.study_delete_failed),
+                    )
+                }
+            }
+        }
+    }
+
     fun undo() {
         if (_state.value.isAnswering || _state.value.studied == 0) return
         _state.update { it.copy(isAnswering = true) }
@@ -140,7 +160,7 @@ class StudyViewModel(
         _state.update { it.copy(message = null) }
     }
 
-    private suspend fun loadNext() {
+    private suspend fun loadNext(message: String? = null) {
         runCatching { engine.nextCard() }
             .onSuccess { card ->
                 cardShownAt = SystemClock.elapsedRealtime()
@@ -153,7 +173,7 @@ class StudyViewModel(
                         isLoading = false,
                         isAnswering = false,
                         isCompleted = finished,
-                        message = null,
+                        message = message,
                     )
                 }
             }

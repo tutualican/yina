@@ -27,6 +27,11 @@ devices, and `x86_64` is for emulators. Android 8.0 or newer is required.
 - **Anki scheduling and persistence.** FSRS, deck limits, learning steps and
   review history are handled by Anki's backend and survive app restarts.
 - **Undo** of the last answer.
+- **Create decks and basic cards** without leaving the app: name a deck, add
+  plain-text front/back cards, rename decks, or delete a deck. The trash button
+  in the study screen deletes the card you are currently reviewing.
+- **System, light or dark appearance**, saved across launches. The card view
+  follows the same choice.
 - **12 UI languages**: English, Turkish, German, Spanish, French, Italian,
   Japanese, Korean, Polish, Portuguese, Russian and Simplified Chinese.
 - **No account, no network, no analytics, no ads.** The app does not request the
@@ -37,7 +42,7 @@ devices, and `x86_64` is for emulators. Android 8.0 or newer is required.
 This is a focused first release, not an AnkiDroid replacement:
 
 - no sync, AnkiWeb login or account system;
-- no card editor, browser, filtered decks or deck options;
+- no rich-text card editor, card browser, filtered decks or deck options;
 - no audio playback or text-to-speech (`[sound:…]` markers are hidden for now);
 - no LaTeX/MathJax rendering;
 - only top-level decks are listed. Studying a parent deck includes its
@@ -104,8 +109,9 @@ On Windows use `gradlew.bat`.
 `AnkiCollectionEngineTest` is an end-to-end host test. It runs Robolectric, loads
 the desktop build of Anki's native backend through the `-testing` artifact, then
 imports `media.apkg`, reads the deck tree, fetches and renders a card, answers it
-with `GOOD`, and reopens the collection to verify persistence. A second test
-exports a real `.colpkg` through the backend and imports it back. This is the
+with `GOOD`, and reopens the collection to verify persistence. Other tests
+export a real `.colpkg` through the backend and import it back, create and rename
+a deck, add a card, delete the pending card, and delete the deck. This is the
 same code path the phone uses, minus the Android UI.
 
 ### Release signing
@@ -120,8 +126,8 @@ It writes `release.jks` and `keystore.properties`; both are gitignored. Back the
 up: without the same key you cannot update an installed copy. Then:
 
 ```powershell
-$env:VERSION_NAME = "0.2.1"
-$env:VERSION_CODE = "3"
+$env:VERSION_NAME = "0.3.0"
+$env:VERSION_CODE = "4"
 .\gradlew :app:assembleRelease
 ```
 

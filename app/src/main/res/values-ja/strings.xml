@@ -46,4 +46,36 @@
     <plurals name="study_done_body">
         <item quantity="other">%1$d 枚学習しました。</item>
     </plurals>
+    <string name="new_deck">新しいデッキ</string>
+    <string name="new_deck_title">デッキを作成</string>
+    <string name="deck_name_label">デッキ名</string>
+    <string name="deck_name_exists">同じ名前のデッキがすでにあります。</string>
+    <string name="add_card">カードを追加</string>
+    <string name="add_card_title">%1$s にカードを追加</string>
+    <string name="front_label">表面</string>
+    <string name="back_label">裏面</string>
+    <string name="rename_deck">デッキ名を変更</string>
+    <string name="rename_deck_title">デッキ名を変更</string>
+    <string name="delete_deck">デッキを削除</string>
+    <string name="delete_deck_title">デッキを削除しますか？</string>
+    <string name="delete_deck_message">「%1$s」とそのすべてのカードを完全に削除します。この操作は取り消せません。</string>
+    <string name="delete">削除</string>
+    <string name="save">保存</string>
+    <string name="cancel">キャンセル</string>
+    <string name="deck_actions">デッキの操作</string>
+    <string name="deck_created">デッキを作成しました。</string>
+    <string name="card_added">カードを追加しました。</string>
+    <string name="deck_renamed">デッキ名を変更しました。</string>
+    <string name="deck_deleted">デッキを削除しました。</string>
+    <string name="action_failed">保存できませんでした: %1$s</string>
+    <string name="action_failed_generic">コレクションが変更を拒否しました</string>
+    <string name="theme_title">外観</string>
+    <string name="theme_system">システムに合わせる</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_dark">ダーク</string>
+    <string name="delete_card">カードを削除</string>
+    <string name="delete_card_title">このカードを削除しますか？</string>
+    <string name="delete_card_message">このカードは完全に削除されます。この操作は取り消せません。</string>
+    <string name="card_deleted">カードを削除しました。</string>
+    <string name="study_delete_failed">カードを削除できませんでした。</string>
 </resources>
