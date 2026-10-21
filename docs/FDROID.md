@@ -42,6 +42,25 @@ and signs the app itself; do not upload this APK to F-Droid.
 The release tag must exist before the merge request is reviewed. The metadata
 uses `commit: v0.4.0` and `gradleprops: - yinaUniversalApk`.
 
+Suggested merge request title: `New app: Yina`.
+
+Suggested merge request body:
+
+```text
+Yina is a local-first Anki-compatible flashcard app.
+
+- Upstream author submitting the app.
+- AGPL-3.0-or-later, source at https://github.com/tutualican/yina
+- No INTERNET permission, no ads, no analytics, no account system.
+- Builds one universal APK with -PyinaUniversalApk.
+- Uses AnkiDroid's published AGPL backend AAR from Maven Central.
+```
+
+F-Droid normally asks for at least three months of active development for a
+new app. Exceptions exist for projects with proven users, maintainers with
+other F-Droid apps, or event-specific apps. If the repository is younger than
+that, the merge request may be deferred even if the build succeeds.
+
 ## Remaining human steps
 
 - Review and publish the draft GitHub release for `v0.4.0`. The application ID
