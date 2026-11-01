@@ -10,7 +10,7 @@ junit = "4.13.2"
 androidxJunit = "1.2.1"
 espresso = "3.6.1"
 ankiBackend = "0.1.71-anki26.09.3"
-robolectric = "4.16.1"
+robolectric = "4.17"
 androidxTestCore = "1.6.1"
 
 [libraries]
